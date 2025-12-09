@@ -1,0 +1,33 @@
+.red {
+  color: black;
+  margin-top: 20px;
+  margin-right: 20px;
+  height: 40px;
+  width: 60px;
+  border-radius: 10px;
+  background-color: red;
+}
+
+.blue {
+  color: black;
+  margin-right: 20px;
+  height: 40px;
+  width: 60px;
+  border-radius: 10px;
+  background-color: blue;
+}
+
+.green {
+  color: black;
+  height: 40px;
+  width: 60px;
+  border-radius: 10px;
+  margin-right: 20px;
+  background-color: green;
+}
+.random {
+  color: black;
+  height: 40px;
+  width: 70px;
+  border-radius: 10px;
+}
