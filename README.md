@@ -75,23 +75,80 @@ A motivational quote generator that displays random quotes with each button clic
 ### 4. Stopwatch
 **Location:** `4/`
 
-A digital stopwatch application with start, stop, and reset functionality.
+A fully functional digital stopwatch application with start, stop, and reset controls.
 
 **Features:**
 - Start/Stop timer functionality
-- Reset timer to 00:00:00
-- Time display in HH:MM:SS format
+- Reset timer to 00:00
+- Time display in MM:SS format
+- Accurate second counting
+- Prevents multiple timers running simultaneously
+
+**Files:**
+- `main.html` - HTML structure
+- `index.js` - JavaScript logic with complete timer implementation
+
+**Concepts:**
+- Timer functions (setInterval/clearInterval)
+- Time formatting with padStart
+- State management with intervalId
+- Preventing memory leaks
+
+**Status:** ✅ Complete
+
+---
+
+### 5. Calculator
+**Location:** `5/`
+
+A functional calculator application for basic arithmetic operations.
+
+**Features:**
+- Basic arithmetic operations (+, -, *, /)
+- Number buttons (0-9) and decimal point
+- Equal button for calculation
+- Clear button to reset
+- Dynamic result display
+
+**Files:**
+- `calculator.html` - HTML structure
+- `calculator.js` - JavaScript logic
+- `calculator.css` - Styling
+
+**Concepts:**
+- DOM manipulation with querySelectorAll
+- Event listeners on multiple elements
+- Dynamic element creation
+- JavaScript eval() for expression evaluation
+- forEach loop for batch event handling
+
+---
+
+### 6. Heart Trail Animation
+**Location:** `6/`
+
+An interactive mouse trail animation that creates heart shapes following the cursor.
+
+**Features:**
+- Mouse movement tracking
+- Dynamic heart generation
+- Random size variations
+- Auto-removal after 3 seconds
+- Smooth animation effects
 
 **Files:**
 - `main.html` - HTML structure
 - `index.js` - JavaScript logic
+- `main.css` - Styling and animations
+- `images/` - Heart image assets
 
 **Concepts:**
-- Timer functions (setInterval/clearInterval)
-- Time formatting
-- State management
-
-**Status:** 🚧 In Progress (Basic structure implemented, timer logic pending)
+- Mouse event handling (mousemove)
+- Dynamic element creation and removal
+- Position tracking (offsetX, offsetY)
+- setTimeout for timed removal
+- Random number generation for variety
+- CSS positioning
 
 ---
 
@@ -103,8 +160,10 @@ A digital stopwatch application with start, stop, and reset functionality.
 
 ### Running the Projects
 
-1. Navigate to the desired project folder (1, 2, 3, or 4)
-2. Open `main.html` in your web browser
+1. Navigate to the desired project folder (1, 2, 3, 4, 5, or 6)
+2. Open the HTML file in your web browser:
+   - Projects 1-4, 6: `main.html`
+   - Project 5: `calculator.html`
 3. Interact with the application
 
 Alternatively, you can use a local server:
@@ -131,6 +190,9 @@ Through these projects, you'll learn:
 - **Timer Functions**: Working with time-based operations
 - **CSS Styling**: Basic styling and layout
 - **User Input**: Handling and validating user input
+- **Mouse Events**: Tracking cursor movement and interactions
+- **Animation**: Creating dynamic visual effects
+- **Mathematical Operations**: Implementing calculator logic
 
 ---
 
@@ -159,6 +221,15 @@ mini_projects/
 ├── 4/                  # Stopwatch
 │   ├── index.js
 │   └── main.html
+├── 5/                  # Calculator
+│   ├── calculator.js
+│   ├── calculator.html
+│   └── calculator.css
+├── 6/                  # Heart Trail Animation
+│   ├── index.js
+│   ├── main.html
+│   ├── main.css
+│   └── images/
 └── README.md
 ```
 
@@ -166,11 +237,12 @@ mini_projects/
 
 ## 🎯 Future Enhancements
 
-- Add more projects (Counter, Calculator, To-Do List, etc.)
-- Improve styling and responsiveness
-- Add animation effects
-- Complete stopwatch timer functionality
+- Add more projects (Counter, To-Do List, Weather App, etc.)
+- Improve styling and responsiveness across all projects
+- Add keyboard support for calculator
+- Enhance animations with more effects
 - Add local storage support for saving data
+- Implement error handling for calculator division by zero
 
 ---
 
