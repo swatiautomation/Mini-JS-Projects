@@ -1,0 +1,43 @@
+.button {
+  background-color: rgb(43, 42, 42);
+  color: white;
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: large;
+  border: none;
+}
+.button-operation {
+  background-color: rgb(220, 128, 7);
+  color: white;
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: large;
+  border: none;
+}
+.clear-button {
+  background-color: red;
+  color: white;
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: large;
+  border: none;
+}
+.equal-button {
+  background-color: green;
+  color: white;
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: large;
+  border: none;
+}
+.body {
+  background-color: black;
+}
