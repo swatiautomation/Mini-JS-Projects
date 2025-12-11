@@ -11,24 +11,24 @@ let result = '';
 
 btn.forEach((button) => {
   button.addEventListener('click', () => {
-    result += button.innerHTML;
-    resultDisplay.innerHTML = result;
+    result += button.textContent;
+    resultDisplay.textContent = result;
   });
 });
 
 buttonOperation.forEach((button) => {
   button.addEventListener('click', () => {
-    result += button.innerHTML;
-    resultDisplay.innerHTML = result;
+    result += button.textContent;
+    resultDisplay.textContent = result;
   });
 });
 
 equalOperation.addEventListener('click', () => {
   result = eval(result).toString();
-  resultDisplay.innerHTML = result;
+  resultDisplay.textContent = result;
 });
 
 clearOperation.addEventListener('click', () => {
   result = '';
-  resultDisplay.innerHTML = `0 ${result}`;
+  resultDisplay.textContent = `0 ${result}`;
 });
