@@ -152,6 +152,64 @@ An interactive mouse trail animation that creates heart shapes following the cur
 
 ---
 
+### 7. Rock Paper Scissors
+**Location:** `7/`
+
+A classic Rock Paper Scissors game where you play against the computer with score tracking.
+
+**Features:**
+- Play Rock, Paper, or Scissors against computer
+- Random computer move generation
+- Score tracking (Wins, Losses, Ties)
+- Persistent score using localStorage
+- Reset score functionality
+- Visual feedback with color-coded results
+- Image-based UI with emojis
+
+**Files:**
+- `rock-paper-scissors.html` - HTML structure
+- `script.js` - JavaScript game logic
+- `styles.css` - Styling
+- `images/` - Rock, paper, scissors emoji images
+
+**Concepts:**
+- Game logic and conditional statements
+- localStorage for persistent data
+- JSON parsing and stringifying
+- Random move selection
+- Score management
+- Dynamic UI updates
+
+---
+
+### 8. Heads or Tails
+**Location:** `8/`
+
+A coin flip game where you guess Heads or Tails and track your win/loss record.
+
+**Features:**
+- Choose Heads or Tails
+- Random coin flip simulation (50/50 probability)
+- Win/Loss score tracking
+- Persistent scoreboard using localStorage
+- Reset score functionality
+- Simple and clean interface
+
+**Files:**
+- `headsAndTails.html` - HTML structure
+- `headsAndTails.js` - JavaScript logic
+- `headsAndTails.css` - Styling
+
+**Concepts:**
+- Probability and randomization (Math.random)
+- localStorage for score persistence
+- Ternary operators for conditional logic
+- Event handling
+- Score management
+- Arrow functions
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -160,10 +218,12 @@ An interactive mouse trail animation that creates heart shapes following the cur
 
 ### Running the Projects
 
-1. Navigate to the desired project folder (1, 2, 3, 4, 5, or 6)
+1. Navigate to the desired project folder (1, 2, 3, 4, 5, 6, 7, or 8)
 2. Open the HTML file in your web browser:
    - Projects 1-4, 6: `main.html`
    - Project 5: `calculator.html`
+   - Project 7: `rock-paper-scissors.html`
+   - Project 8: `headsAndTails.html`
 3. Interact with the application
 
 Alternatively, you can use a local server:
@@ -193,6 +253,9 @@ Through these projects, you'll learn:
 - **Mouse Events**: Tracking cursor movement and interactions
 - **Animation**: Creating dynamic visual effects
 - **Mathematical Operations**: Implementing calculator logic
+- **Game Logic**: Building interactive games with rules and scoring
+- **Local Storage**: Persisting data across browser sessions
+- **Probability**: Working with random outcomes and statistics
 
 ---
 
@@ -230,6 +293,15 @@ mini_projects/
 │   ├── main.html
 │   ├── main.css
 │   └── images/
+├── 7/                  # Rock Paper Scissors
+│   ├── script.js
+│   ├── rock-paper-scissors.html
+│   ├── styles.css
+│   └── images/
+├── 8/                  # Heads or Tails
+│   ├── headsAndTails.js
+│   ├── headsAndTails.html
+│   └── headsAndTails.css
 └── README.md
 ```
 
@@ -239,10 +311,12 @@ mini_projects/
 
 - Add more projects (Counter, To-Do List, Weather App, etc.)
 - Improve styling and responsiveness across all projects
-- Add keyboard support for calculator
+- Add keyboard support for calculator and games
 - Enhance animations with more effects
-- Add local storage support for saving data
+- Add sound effects for games
 - Implement error handling for calculator division by zero
+- Add difficulty levels for Rock Paper Scissors
+- Create leaderboard for game scores
 
 ---
 
