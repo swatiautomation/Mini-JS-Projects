@@ -14,9 +14,7 @@ h4 {
   justify-content: center;
 }
 
-.rock,
-.paper,
-.scissors {
+.move-icon {
   height: 90px;
   width: 90px;
   object-fit: cover;
@@ -35,4 +33,31 @@ body {
   border-radius: 100px;
   border: 3px solid #ffffff;
   margin-right: 30px;
+}
+.reset-button {
+  margin-top: 100px;
+  height: 40px;
+  width: 120px;
+  margin-left: 900px;
+}
+.computer-move {
+  font-family: 'Arial', sans-serif;
+  font-size: 30px;
+  margin-top: 20px;
+  color: #ebe3e3;
+  text-align: center;
+}
+.result {
+  font-family: 'Arial', sans-serif;
+  font-size: 40px;
+  margin-top: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+.score {
+  font-family: 'Arial', sans-serif;
+  font-size: 30px;
+  margin-top: 20px;
+  color: #ebe3e3;
+  text-align: center;
 }

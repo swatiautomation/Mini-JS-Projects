@@ -1,14 +1,14 @@
-const rock = document.querySelector('.rock');
-const paper = document.querySelector('.paper');
-const scissors = document.querySelector('.scissors');
+const rock = document.querySelector('.rock-div');
+const paper = document.querySelector('.paper-div');
+const scissors = document.querySelector('.scissors-div');
 const resetButton = document.querySelector('.reset-button');
 const computerMoveDiv = document.querySelector('.computer-move');
 const resultMessageDiv = document.querySelector('.result-message');
 const scoreDiv = document.querySelector('.score');
 
-rock.addEventListener('click', () => play('Rock'));
-paper.addEventListener('click', () => play('Paper'));
-scissors.addEventListener('click', () => play('Scissors'));
+rock.addEventListener('click', () => play('rock'));
+paper.addEventListener('click', () => play('paper'));
+scissors.addEventListener('click', () => play('scissors'));
 
 resetButton.addEventListener('click', () => {
   score.wins = 0;
@@ -34,8 +34,6 @@ function updateScore() {
 function showResult(message, color) {
   resultMessageDiv.innerText = message;
   resultMessageDiv.style.color = color;
-  resultMessageDiv.style.fontSize = '40px';
-  resultMessageDiv.style.textAlign = 'center';
 
   if (message === 'You win!') {
     score.wins += 1;
@@ -49,10 +47,13 @@ function showResult(message, color) {
 }
 
 function play(playerMove) {
-  const move = ['Rock', 'Paper', 'Scissors'];
+  const move = ['rock', 'paper', 'scissors'];
   const computerMove = move[Math.floor(Math.random() * 3)];
 
-  computerMoveDiv.innerText = `You chose ${playerMove} - Computer chose:${computerMove} `;
+  computerMoveDiv.innerHTML = `You
+      <img src="./images/${playerMove}-emoji.png" class="move-icon" />
+      <img src="./images/${computerMove}-emoji.png" class="move-icon" />
+      computer.`;
   computerMoveDiv.style.color = '#ebe3e3';
 
   if (playerMove == computerMove) {
