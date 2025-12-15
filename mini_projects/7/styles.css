@@ -38,7 +38,36 @@ body {
   margin-top: 100px;
   height: 40px;
   width: 120px;
-  margin-left: 900px;
+  margin-left: 800px;
+  font-weight: bold;
+  border-radius: 6px;
+  background-color: rgb(234, 178, 22);
+}
+.auto-play-button {
+  margin-top: 100px;
+  height: 40px;
+  width: 120px;
+  margin-left: 20px;
+  font-weight: bold;
+  border-radius: 6px;
+  background-color: rgb(234, 178, 22);
+}
+.confirmation-dialog {
+  font-family: 'Arial', sans-serif;
+  font-size: 20px;
+  margin-top: 20px;
+  color: #ebe3e3;
+  text-align: center;
+}
+.yes-button,
+.no-button {
+  margin-top: 20px;
+  height: 30px;
+  width: 80px;
+  margin-right: 10px;
+  font-weight: bold;
+  border-radius: 6px;
+  background-color: rgb(22, 178, 34);
 }
 .computer-move {
   font-family: 'Arial', sans-serif;
