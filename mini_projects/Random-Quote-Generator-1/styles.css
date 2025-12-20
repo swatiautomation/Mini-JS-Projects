@@ -1,0 +1,33 @@
+body {
+  background-color: #53abf8;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#msg {
+  margin: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+
+  box-shadow: 10px 10px 5px grey;
+}
+
+.quote h1 {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+@media (max-width: 480px) {
+  #msg {
+    font-size: 18px;
+    margin: 10px;
+  }
+}

@@ -3,6 +3,7 @@ const redBtn = document.querySelector('.red');
 const blueBtn = document.querySelector('.blue');
 const greenBtn = document.querySelector('.green');
 const randomBtn = document.querySelector('.random');
+const hexcode = document.querySelector('.hexcode');
 
 redBtn.addEventListener('click', () => setColor('red'));
 blueBtn.addEventListener('click', () => setColor('blue'));
@@ -12,7 +13,8 @@ randomBtn.addEventListener('click', randomcolor);
 function randomcolor() {
   const randomNumber = Math.floor(Math.random() * 0xffffff);
   const color = `#${randomNumber.toString(16)}`;
-  // this.style.background = color;
+  console.log(color);
+  hexcode.innerHTML = `Hex Code of the color is : ${color}`;
   body.style.background = color;
 }
 
