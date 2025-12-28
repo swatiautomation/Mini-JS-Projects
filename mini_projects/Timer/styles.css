@@ -1,0 +1,21 @@
+.body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: rgb(214, 39, 39);
+}
+
+.container {
+  border: 5px solid rgb(227, 11, 11);
+  background-color: yellowgreen;
+  margin-top: 19%;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 120px;
+  color: white;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
