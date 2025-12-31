@@ -29,11 +29,9 @@ function typeNote() {
     container3.style.display = 'none';
   }
 }
-function createNote() {
-  noteTextValue = noteText.value;
-
-  var node0 = document.createElement('h1');
-  var node1 = document.createElement('div');
+function createNoteElement(noteTextValue) {
+  const node0 = document.createElement('h1');
+  const node1 = document.createElement('div');
 
   node0.innerHTML = noteTextValue;
   node0.setAttribute(
@@ -47,7 +45,6 @@ function createNote() {
 
   node1.appendChild(node0);
   container2.appendChild(node1);
-  noteText.value = '';
 
   node1.addEventListener('mouseenter', () => {
     node1.style.transform = 'scale(1.1)';
@@ -59,7 +56,16 @@ function createNote() {
   });
   node1.addEventListener('dblclick', () => {
     container2.removeChild(node1);
+    deleteLocalStorageNotes(node1);
   });
+
+  return node1;
+}
+function createNote() {
+  const noteTextValue = noteText.value.trim();
+  createNoteElement(noteTextValue);
+  noteText.value = '';
+  localStorageNotes(noteTextValue);
 }
 function margin() {
   var randomMargin = ['-5px', '5px', '10px', '15px', '20px', '25px', '30px'];
@@ -77,7 +83,6 @@ function rotate() {
   ];
   return randomRotate[Math.floor(Math.random() * 20)];
 }
-
 function color() {
   var randomColor = [
     '#ca2c09ff',
@@ -95,3 +100,30 @@ function color() {
   }
   return randomColor[i++];
 }
+function localStorageNotes(key) {
+  let notes = [];
+  notes = JSON.parse(localStorage.getItem('notes')) || [];
+  notes.push(key);
+  localStorage.setItem('notes', JSON.stringify(notes));
+}
+function getLocalStorageItems() {
+  const notes = JSON.parse(localStorage.getItem('notes')) || [];
+  notes.forEach((element) => {
+    createNoteElement(element);
+  });
+}
+function deleteLocalStorageNotes(key) {
+  let notes = [];
+  notes = JSON.parse(localStorage.getItem('notes')) || [];
+
+  let notesText = key.children[0].innerHTML;
+  console.log(notesText);
+  let index = notes.indexOf(notesText);
+  console.log(index);
+  notes.splice(index, 1);
+
+  localStorage.setItem('notes', JSON.stringify(notes));
+}
+document.addEventListener('DOMContentLoaded', () => {
+  getLocalStorageItems();
+});
