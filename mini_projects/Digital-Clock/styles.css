@@ -2,39 +2,33 @@
 body {
   font-family: 'Poiret One', sans-serif;
   overflow: hidden;
-  background: conic-gradient(
-    from 90deg at 25% -10%,
-    #ff4500,
-    #d3f340,
-    #7bee85,
-    #afeeee,
-    #7bee85
-  );
+  background: url('https://media.istockphoto.com/id/1306130049/photo/wind-turbines-in-the-ocean.jpg?s=2048x2048&w=is&k=20&c=xVOZOe4W4q52MAd826VNcJBhK87Kudzcd8BAsyOTnaQ=');
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-weight: bold;
 }
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-
   width: 95%;
   height: 100vh;
   margin: auto;
 }
 .digitalClock {
-  color: white;
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-
+  color: rgb(17, 16, 16);
   padding: 10px 20px;
   width: fit-content;
   margin: auto;
   border-radius: 3px;
-  background: rgba(109, 108, 108, 0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .digitalClock h1 {
   display: inline;
   margin: 0 10px;
   font-size: 80px;
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {
