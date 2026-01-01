@@ -19,7 +19,6 @@ body {
 h1 {
   margin-bottom: 40px;
   color: #313b72;
-  margin: 20;
   font-weight: bold;
   font-size: 40px;
   text-decoration: underline;
@@ -79,18 +78,19 @@ h1 {
   background-color: #3e4b98;
 }
 
-#message {
+#message,
+.score {
   border: 1px #313b72;
   width: 100vh;
   font-size: 2rem;
   margin-bottom: 1rem;
+  margin-top: 1rem;
   color: #151e3a;
   font-weight: bold;
   text-align: center;
   background-color: #f3e2e2;
 }
 .msg-container {
-  height: 80vmin;
   display: flex;
   flex-direction: column;
   align-items: center;

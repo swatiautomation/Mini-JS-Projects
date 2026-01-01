@@ -48,7 +48,8 @@ function showResult(message, color) {
   } else {
     score.ties += 1;
   }
-  localStorage.setItem('score', JSON.stringify(score));
+
+  saveToLocalStorage(score);
   updateScore();
 }
 
@@ -121,3 +122,16 @@ function autoPlay() {
     autoPlayButton.innerText = 'Auto Play';
   }
 }
+
+function saveToLocalStorage(value) {
+  localStorage.setItem('score', JSON.stringify(value));
+}
+
+function getFromLocalStorage() {
+  const storedScore = JSON.parse(localStorage.getItem('score'));
+  if (storedScore) {
+    score = storedScore;
+  }
+  updateScore();
+}
+document.addEventListener('DOMContentLoaded', getFromLocalStorage);
