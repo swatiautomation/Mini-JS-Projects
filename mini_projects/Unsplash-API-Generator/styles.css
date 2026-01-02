@@ -3,6 +3,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 body {
   font-family: 'Comfortaa', sans-serif;
@@ -57,12 +58,27 @@ input:focus {
   color: orange;
   transform: scale(1.2);
 }
+.imgContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* gap: 10px; */
+  margin-block: 80px;
+}
+.imgContainer .img {
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s ease;
+}
 .grid {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
   flex-wrap: wrap;
+  gap: 5px;
 }
 
 .img {
@@ -70,11 +86,43 @@ input:focus {
   height: 250px;
   margin-top: 15px;
   background-position: 50% 50%;
-
+  cursor: pointer;
   background-size: cover;
   border-radius: 2px;
+  position: relative;
 }
-@media (max-width: 768px) {
+.loadMoreBtn {
+  border: none;
+  background-color: orange;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.tooltip {
+  position: absolute;
+  background-color: grey;
+  color: black;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 17px;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.img:hover .tooltip {
+  opacity: 1;
+}
+
+@media (min-width: 580px) and (max-width: 768px) {
   .grid {
     width: 100%;
     justify-content: center;
@@ -86,13 +134,17 @@ input:focus {
   .nav {
     justify-content: center;
   }
-  .mav h2 {
+  .nav h2 {
     padding: 5px 0;
   }
 }
 
-@media (max-width: 480px) {
-  .mav h2 {
+@media (max-width: 570px) {
+  .grid {
+    width: 80%;
+    justify-content: center;
+  }
+  .nav h2 {
     text-align: center;
     font-size: 1.5rem;
   }
