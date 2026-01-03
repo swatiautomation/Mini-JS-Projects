@@ -6,14 +6,9 @@ body {
 }
 span {
   background: url('https://cdn4.iconfinder.com/data/icons/general-office/91/General_Office_54-512.png');
-  height: 100px;
-  width: 100px;
-  position: absolute;
   background-size: cover;
-  background-repeat: no-repeat;
+  position: absolute;
   pointer-events: none;
-  left: 50%;
-  top: 50%;
   transform: translate(-50%, -50%);
   animation: animate 6s linear;
 }

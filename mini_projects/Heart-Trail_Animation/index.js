@@ -11,6 +11,7 @@ body.addEventListener('mousemove', (event) => {
   spanEl1.style.top = posY + 'px';
 
   const size = Math.random() * 100;
+  console.log(size);
 
   spanEl1.style.width = size + 'px';
   spanEl1.style.height = size + 'px';
