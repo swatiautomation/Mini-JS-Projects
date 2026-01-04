@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.container {
+  width: 90%;
+  height: 100vh;
+  margin: auto;
+  display: grid;
+  place-items: center;
+  background-color: black;
+}
+.openModal {
+  border: none;
+  outline: none;
+  background-color: white;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.popup {
+  background-color: white;
+  width: 300px;
+  max-width: 100vw;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease-in-out;
+  /* transform: translate(-50%, -50%) scale(0.1);
+  visibility: hidden; */
+}
+p {
+  margin-bottom: 20px;
+  padding-block: 10px;
+}
+.closeModalBtn {
+  background-color: green;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+/* .popup--visible {
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+} */
+
+.hide {
+  /* display: none; */
+  transform: translate(-50%, -50%) scale(0.1);
+  visibility: hidden;
+}
+
+@media screen and (max-width: 400px) {
+  .popup {
+    max-width: 80vw;
+  }
+}
