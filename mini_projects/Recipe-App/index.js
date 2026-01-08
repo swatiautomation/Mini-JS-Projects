@@ -1,0 +1,81 @@
+const recipeContainer = document.querySelector('.recipe-container');
+const inputBox = document.querySelector('#inputBox');
+const searchBtn = document.querySelector('.searchBtn');
+const form = document.querySelector('form');
+const recipeDetailsContent = document.querySelector('.recipe-details-content');
+const recipeDetails = document.querySelector('.recipe-details');
+const recipeCloseBtn = document.querySelector('.recipeCloseBtn');
+
+searchBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  const searchTerm = inputBox.value.trim();
+  if (!searchTerm) return;
+  fetchRecipes(searchTerm);
+});
+
+async function fetchRecipes(searchTerm) {
+  recipeContainer.innerHTML = '<h2>Featching recipes...</h2>';
+  try {
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`;
+    const response = await fetch(url);
+    const data = await response.json();
+
+    console.log(data);
+    recipeContainer.innerHTML = '';
+
+    data.meals.forEach((meal) => {
+      const mealDiv = document.createElement('div');
+      mealDiv.classList.add('meal');
+      mealDiv.innerHTML = `<img src="${meal.strMealThumb}"/>
+    <h3>${meal.strMeal}</h3>
+    <p><strong>${meal.strArea}</strong> Dish</p>
+    <p>Belongs to <strong>${meal.strCategory}</strong> Category</p>`;
+
+      const button = document.createElement('button');
+      button.textContent = 'Get Recipe';
+      button.classList.add('recipeBtn');
+      mealDiv.appendChild(button);
+
+      button.addEventListener('click', () => {
+        openRecipePopup(meal);
+      });
+
+      recipeContainer.appendChild(mealDiv);
+    });
+  } catch (error) {
+    recipeContainer.innerHTML = `<img src="./image/no-image.png" style="font-size: 20px;height: 400px;width: 400px" />`;
+  }
+}
+
+function openRecipePopup(meal) {
+  recipeDetailsContent.innerHTML = `<h2 class="recipe-title">${
+    meal.strMeal
+  }</h2>
+  <h3>Ingredients:</h3>
+  <ul class="ingredients-list">${fetchIngredients(meal)}</ul>
+  <div class="instructions">
+  <h3>Instructions:</h3>
+  <p > ${meal.strInstructions}</p>
+  </div>`;
+
+  recipeDetailsContent.parentElement.style.display = 'block';
+}
+
+function fetchIngredients(meal) {
+  let ingredientList = '';
+
+  for (let i = 1; i <= 20; i++) {
+    const Ingredient = meal[`strIngredient${i}`];
+    if (Ingredient) {
+      const measure = meal[`strMeasure${i}`];
+      ingredientList += `<li>${Ingredient} - ${measure}</li>`;
+    } else {
+      break;
+    }
+  }
+  return ingredientList;
+}
+
+recipeCloseBtn.addEventListener('click', () => {
+  recipeDetailsContent.parentElement.style.display = 'none';
+});

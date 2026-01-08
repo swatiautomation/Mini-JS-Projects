@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe App</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1>Recipe App</h1>
+        <form action="">
+          <input
+            type="text"
+            id="inputBox"
+            placeholder="Search for recipes..."
+          />
+          <button type="submit" class="searchBtn">Search</button>
+        </form>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <div class="recipe-container">
+          <h2>Search your recipe...</h2>
+          <!-- <img src="images/recipe.png" alt="recipe img" /> -->
+        </div>
+        <div class="recipe-details">
+          <button class="recipeCloseBtn">
+            <i class="fa-regular fa-circle-xmark" style="font-size: 20px"></i>
+          </button>
+          <div class="recipe-details-content"></div>
+        </div>
+      </section>
+    </main>
+    <script src="index.js"></script>
+  </body>
+</html>

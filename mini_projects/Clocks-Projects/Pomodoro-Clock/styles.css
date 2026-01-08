@@ -1,0 +1,118 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body {
+  background-color: #757575;
+  background: url('/mini_projects/Pomodoro-Clock/bcg-image.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.timer {
+  font-size: 50px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  letter-spacing: 4.5px;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.9), 0 0px 20px rgba(0, 0, 0, 0.9),
+    0 0px 30px rgba(0, 0, 0, 0.5);
+  background-color: #212121;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+
+  display: grid;
+  place-content: center;
+}
+
+h1 {
+  font-size: 25px;
+  margin: 20px;
+}
+.buttons {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.buttons button {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background-color: var(--clr);
+}
+
+.buttons button:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.pomoCountsDisplay {
+  display: none;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+  font-size: 20px;
+  animation: swipe-up 0.5s ease-in-out;
+}
+.pomoCountsDisplay span {
+  font-weight: bold;
+  font-size: 50px;
+}
+p {
+  margin-top: 10px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+@keyframes swipe-up {
+  0% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .timer {
+    width: 220px;
+    height: 220px;
+    font-size: 40px;
+  }
+  .container h1 {
+    font-size: 20px;
+  }
+  .buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .buttons button {
+    margin: 10px;
+    width: 40%;
+    display: grid;
+    font-size: 15px;
+  }
+}
