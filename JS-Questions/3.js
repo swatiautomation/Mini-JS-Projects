@@ -34,3 +34,8 @@ const replaceWithNextChar1 = (str) =>
 console.log(replaceWithNextChar1('abcdxyz')); // 'bcdeyza'
 console.log(replaceWithNextChar1('hello')); // 'ifmmp'
 console.log(replaceWithNextChar1('javascript')); // 'kbwbtdsjqu'
+
+const s = 'swati';
+
+console.log(s.charCodeAt(0)); //115
+console.log(String.fromCharCode(116)); //t
