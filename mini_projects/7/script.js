@@ -1,3 +1,4 @@
+// Selectors
 const rock = document.querySelector('.rock-div');
 const paper = document.querySelector('.paper-div');
 const scissors = document.querySelector('.scissors-div');
@@ -8,6 +9,8 @@ const scoreDiv = document.querySelector('.score');
 const autoPlayButton = document.querySelector('.auto-play-button');
 const confirmationDialog = document.querySelector('.confirmation-dialog');
 
+// Event Listeners
+
 rock.addEventListener('click', () => play('rock'));
 paper.addEventListener('click', () => play('paper'));
 scissors.addEventListener('click', () => play('scissors'));
@@ -16,11 +19,15 @@ resetButton.addEventListener('click', () => {
   showResetConfirmation();
 });
 
+// Score Object
+
 let score = JSON.parse(localStorage.getItem('score')) || {
   wins: 0,
   losses: 0,
   ties: 0,
 };
+
+// Reset Score Function
 
 function resetScore() {
   score.wins = 0;
@@ -32,10 +39,33 @@ function resetScore() {
   resultMessageDiv.innerText = '';
   confirmationDialog.innerHTML = '';
 }
+
+// Confirmation Dialog
+
+function showResetConfirmation() {
+  confirmationDialog.innerHTML = `<div> Are you sure you want to reset the score?</div>
+    <button class="yes-button"> Yes </button>
+    <button class="no-button"> No </button>`;
+
+  const yesButton = document.querySelector('.yes-button');
+  const noButton = document.querySelector('.no-button');
+  yesButton.addEventListener('click', () => {
+    resetScore();
+  });
+
+  noButton.addEventListener('click', () => {
+    confirmationDialog.innerHTML = '';
+  });
+}
+
+// Update Score Display
+
 function updateScore() {
   scoreDiv.innerText = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
   scoreDiv.style.color = '#ebe3e3';
 }
+
+// Display Result
 
 function showResult(message, color) {
   resultMessageDiv.innerText = message;
@@ -52,6 +82,8 @@ function showResult(message, color) {
   saveToLocalStorage(score);
   updateScore();
 }
+
+// Game Logic
 
 function play(playerMove) {
   const move = ['rock', 'paper', 'scissors'];
@@ -76,6 +108,8 @@ function play(playerMove) {
   }
 }
 
+//Keyboard Event Listener
+
 document.body.addEventListener('keydown', (event) => {
   if (event.key === 'r') {
     play('rock');
@@ -89,21 +123,8 @@ document.body.addEventListener('keydown', (event) => {
     showResetConfirmation();
   }
 });
-function showResetConfirmation() {
-  confirmationDialog.innerHTML = `<div> Are you sure you want to reset the score?</div>
-    <button class="yes-button"> Yes </button>
-    <button class="no-button"> No </button>`;
 
-  const yesButton = document.querySelector('.yes-button');
-  const noButton = document.querySelector('.no-button');
-  yesButton.addEventListener('click', () => {
-    resetScore();
-  });
-
-  noButton.addEventListener('click', () => {
-    confirmationDialog.innerHTML = '';
-  });
-}
+// Auto Play Functionality
 
 let isAutoPlaying = false;
 let intervalId;
@@ -122,6 +143,8 @@ function autoPlay() {
     autoPlayButton.innerText = 'Auto Play';
   }
 }
+
+//Local Storage Functions
 
 function saveToLocalStorage(value) {
   localStorage.setItem('score', JSON.stringify(value));
