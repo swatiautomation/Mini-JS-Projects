@@ -2,8 +2,8 @@ const btn = document.querySelectorAll('.button');
 const buttonOperation = document.querySelectorAll('.button-operation');
 const equalOperation = document.querySelector('.equal-button');
 const clearOperation = document.querySelector('.clear-button');
-
 const resultDisplay = document.createElement('h1');
+
 document.body.prepend(resultDisplay);
 resultDisplay.style.color = 'white';
 

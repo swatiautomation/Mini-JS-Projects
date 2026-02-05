@@ -5,15 +5,15 @@ const operationBtns = document.querySelectorAll('.operation-btn');
 const clearBtn = document.querySelector('.clear-btn');
 
 let expression = '';
-function press(num) {
+press = (num) => {
   expression += num;
   calculatorScreen.value = expression;
-}
+};
 
-function calculate() {
+calculate = () => {
   calculatorScreen.value = eval(expression);
   expression = '';
-}
+};
 
 btns.forEach((btn) => {
   btn.addEventListener('click', () => {
