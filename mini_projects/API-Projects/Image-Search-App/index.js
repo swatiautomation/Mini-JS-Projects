@@ -4,25 +4,31 @@ const searchBtn = document.querySelector('#search-btn');
 const imageContainer = document.querySelector('.image-container');
 const loadMoreBtn = document.querySelector('.loadMoreBtn');
 
-let pageNo = 1;
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  pageNo = 1;
-  if (searchInput.value.trim() !== '') {
-    fetchImages(searchInput.value, pageNo);
-  } else {
-    imageContainer.innerHTML = `<h2>Please enter a search term</h2>`;
-  }
+const baseUrl = `https://api.unsplash.com/search/photos?query=`;
+let pageNum = 1;
+
+searchBtn.addEventListener('click', () => {
+  searchInput.value.trim() !== ''
+    ? fetchImages(searchInput.value, pageNum)
+    : (imageContainer.innerHTML = `<h2>Please enter a search term</h2>`);
 });
 
-async function fetchImages(word, pageNo) {
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  searchInput.value.trim() !== ''
+    ? fetchImages(searchInput.value, pageNum)
+    : (imageContainer.innerHTML = `<h2>Please enter a search term</h2>`);
+});
+
+async function fetchImages(SearchItem, pageNum) {
   try {
-    if (pageNo === 1) {
-      imageContainer.innerHTML = '';
-    }
-    const url = `https://api.unsplash.com/search/photos?query=${word}&per_page=30&page=${pageNo}&client_id=BekaH84Ex6BqFGpDpfV1TUvNJoNxwu32YKIifMcp5Ok`;
+    pageNum === 1 ? (imageContainer.innerHTML = '') : null; // Clear images only on the first page
+
+    const url = `${baseUrl}${SearchItem}&per_page=30&page=${pageNum}&client_id=BekaH84Ex6BqFGpDpfV1TUvNJoNxwu32YKIifMcp5Ok`;
     const response = await fetch(url);
     const data = await response.json();
+
+    // console.log(data);
 
     if (data.results.length > 0) {
       data.results.forEach((photo) => {
@@ -38,37 +44,36 @@ async function fetchImages(word, pageNo) {
         imgElement.addEventListener('dblclick', () => {
           window.open(photo.links.download, 'target=_blank');
         });
+        imgElement.addEventListener('click', () => {
+          window.open(photo.links.download, 'target=_blank');
+        });
 
         const overlay = document.createElement('div');
         overlay.classList.add('overlay');
 
         const overLayText = document.createElement('h3');
-        overLayText.innerText = `Photo by ${
-          photo.alt_description || 'Unknown'
-        }`;
+        overLayText.innerText = `${photo.alt_description || 'Unknown'}`;
 
         overlay.appendChild(overLayText);
         imgElement.appendChild(overlay);
         imageContainer.appendChild(imgElement);
       });
 
-      if (data.total_pages === pageNo) {
-        loadMoreBtn.style.display = 'none';
-      } else {
-        loadMoreBtn.style.display = 'block';
-      }
+      data.total_pages === pageNum
+        ? (loadMoreBtn.style.display = 'none')
+        : (loadMoreBtn.style.display = 'block');
     } else {
       imageContainer.innerHTML = `<h2>No results found</h2>`;
     }
   } catch (err) {
     imageContainer.innerHTML = `<h2>Error in fetching images</h2>`;
+    throw err;
   }
-  //  console.log(data);
 }
 
 loadMoreBtn.addEventListener('click', () => {
-  pageNo++;
-  fetchImages(searchInput.value.trim(), ++pageNo);
+  pageNum++;
+  fetchImages(searchInput.value.trim(), pageNum);
 });
 
 function changeBackground() {
