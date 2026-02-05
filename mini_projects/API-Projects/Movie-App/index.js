@@ -1,9 +1,10 @@
+//Selectors
 const form = document.querySelector('form');
 const inputBox = document.querySelector('.inputBox');
-// const searchButton = document.querySelector('.searchButton');
 const movieContainer = document.querySelector('.movie-container');
 const baseUrl = 'http://www.omdbapi.com/?apikey=bdc536c3&t=';
 
+// Event Listeners
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -16,6 +17,7 @@ form.addEventListener('submit', async (e) => {
   }
 });
 
+// Fetch API Data
 async function fetchMovieData(movieTitle) {
   try {
     const url = `${baseUrl}${movieTitle}`;
@@ -31,6 +33,7 @@ async function fetchMovieData(movieTitle) {
   }
 }
 
+// Function to display movie data
 function showMovieData(movie) {
   movieContainer.innerHTML = ''; // Clear previous movie data
   movieContainer.classList.remove('nobackground');
@@ -93,6 +96,7 @@ function showMovieData(movie) {
   movieContainer.appendChild(movieElement);
 }
 
+// Function to show messages
 showMessage = (message) => {
   movieContainer.innerHTML = `<h2>${message}</h2>`;
   movieContainer.classList.add('nobackground');

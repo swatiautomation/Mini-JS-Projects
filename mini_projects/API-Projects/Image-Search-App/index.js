@@ -7,11 +7,14 @@ const loadMoreBtn = document.querySelector('.loadMoreBtn');
 const baseUrl = `https://api.unsplash.com/search/photos?query=`;
 let pageNum = 1;
 
+// Event Listeners
 searchBtn.addEventListener('click', () => {
   searchInput.value.trim() !== ''
     ? fetchImages(searchInput.value, pageNum)
     : (imageContainer.innerHTML = `<h2>Please enter a search term</h2>`);
 });
+
+// Event listener for Enter key press
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -20,6 +23,7 @@ form.addEventListener('submit', (e) => {
     : (imageContainer.innerHTML = `<h2>Please enter a search term</h2>`);
 });
 
+// Function to fetch images from Unsplash API
 async function fetchImages(SearchItem, pageNum) {
   try {
     pageNum === 1 ? (imageContainer.innerHTML = '') : null; // Clear images only on the first page
@@ -27,8 +31,6 @@ async function fetchImages(SearchItem, pageNum) {
     const url = `${baseUrl}${SearchItem}&per_page=30&page=${pageNum}&client_id=BekaH84Ex6BqFGpDpfV1TUvNJoNxwu32YKIifMcp5Ok`;
     const response = await fetch(url);
     const data = await response.json();
-
-    // console.log(data);
 
     if (data.results.length > 0) {
       data.results.forEach((photo) => {
@@ -71,11 +73,13 @@ async function fetchImages(SearchItem, pageNum) {
   }
 }
 
+// Load more button event listener
 loadMoreBtn.addEventListener('click', () => {
   pageNum++;
   fetchImages(searchInput.value.trim(), pageNum);
 });
 
+// Function to change background based on time of day
 function changeBackground() {
   const date = new Date();
   const hours = date.getHours();
@@ -89,4 +93,6 @@ function changeBackground() {
     document.body.style.color = '#fff';
   }
 }
+
+// Call the function to change background on page load
 window.addEventListener('load', changeBackground);
