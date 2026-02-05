@@ -1,38 +1,37 @@
 const form = document.querySelector('form');
 const inputBox = document.querySelector('.inputBox');
-const searchButton = document.querySelector('.searchButton');
+// const searchButton = document.querySelector('.searchButton');
 const movieContainer = document.querySelector('.movie-container');
+const baseUrl = 'http://www.omdbapi.com/?apikey=bdc536c3&t=';
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const movieName = inputBox.value.trim();
   if (movieName !== '') {
-    showError('Loading...');
+    showMessage('Loading...');
     fetchMovieData(movieName);
   } else {
-    // movieContainer.innerHTML = '<h2>Please enter a movie name</h2>';
-    // movieContainer.classList.add('nobackground');
-    showError('Please enter a movie name');
+    showMessage('Please enter a movie name');
   }
 });
 
-async function fetchMovieData(movie) {
+async function fetchMovieData(movieTitle) {
   try {
-    const url = `http://www.omdbapi.com/?apikey=bdc536c3&t=${movie}`;
+    const url = `${baseUrl}${movieTitle}`;
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
     console.log(data);
-    showMoveiData(data);
+    showMovieData(data);
   } catch {
-    showError('No Movie Found');
+    showMessage('No Movie Found');
   }
 }
 
-function showMoveiData(movie) {
+function showMovieData(movie) {
   movieContainer.innerHTML = ''; // Clear previous movie data
   movieContainer.classList.remove('nobackground');
 
@@ -82,7 +81,9 @@ function showMoveiData(movie) {
   movieElement.innerHTML += `<p><strong>Released Date :</strong> ${Released}</p>
   <p><strong>Duration :</strong> ${Runtime}</p>
   <p><strong>Cast :</strong> ${Actors}</p>
-  <p><strong>Plot :</strong> ${Plot}</p>`;
+  <p><strong>Language :</strong> ${Language}</p>
+  <p><strong>Plot :</strong> ${Plot}</p>
+  `;
 
   const moviePoster = document.createElement('div');
   moviePoster.classList.add('movie-poster');
@@ -92,7 +93,7 @@ function showMoveiData(movie) {
   movieContainer.appendChild(movieElement);
 }
 
-function showError(message) {
+showMessage = (message) => {
   movieContainer.innerHTML = `<h2>${message}</h2>`;
   movieContainer.classList.add('nobackground');
-}
+};
