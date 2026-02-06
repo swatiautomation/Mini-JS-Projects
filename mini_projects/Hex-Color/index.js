@@ -1,11 +1,7 @@
 const clickMeButton = document.querySelector('.clickme');
 
-clickMeButton.addEventListener('click', () => {
-  getHexColor();
-});
-
-function getHexColor() {
-  var hex_numbers = [
+const getHexColor = () => {
+  const hex_numbers = [
     '0',
     '1',
     '2',
@@ -23,13 +19,14 @@ function getHexColor() {
     'E',
     'F',
   ];
-  var hexColor = '';
-
+  let hexColor = '';
   for (let i = 0; i < 6; i++) {
-    var random = Math.floor(Math.random() * hex_numbers.length);
+    const random = Math.floor(Math.random() * hex_numbers.length);
     hexColor += hex_numbers[random];
   }
-
   document.querySelector('#hexcode').innerHTML = `#${hexColor}`;
   document.body.style.backgroundColor = `#${hexColor}`;
-}
+};
+clickMeButton.addEventListener('click', () => {
+  getHexColor();
+});

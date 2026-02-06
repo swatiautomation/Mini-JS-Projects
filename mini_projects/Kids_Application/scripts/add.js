@@ -5,17 +5,16 @@ const myAudio = document.querySelector('#myAudio');
 const num1Element = document.querySelector('#num1');
 const num2Element = document.querySelector('#num2');
 let answer = 0;
+const allAnswers = [];
+const switchAnswers = [];
 
-function generateQuestion() {
-  let num1 = Math.floor(Math.random() * 10);
-  let num2 = Math.floor(Math.random() * 10);
+const generateQuestion = () => {
+  const num1 = Math.floor(Math.random() * 10);
+  const num2 = Math.floor(Math.random() * 10);
   answer = num1 + num2;
 
-  let dummyAnswers1 = Math.floor(Math.random() * 13);
-  let dummyAnswers2 = Math.floor(Math.random() * 13);
-
-  let allAnswers = [];
-  let switchAnswers = [];
+  const dummyAnswers1 = Math.floor(Math.random() * 13);
+  const dummyAnswers2 = Math.floor(Math.random() * 13);
 
   num1Element.innerHTML = num1;
   num2Element.innerHTML = num2;
@@ -27,16 +26,15 @@ function generateQuestion() {
   allAnswers.push(answer, dummyAnswers1, dummyAnswers2);
 
   while (allAnswers.length > 0) {
-    let randomIndex = Math.floor(Math.random() * allAnswers.length);
-    console.log(randomIndex);
+    const randomIndex = Math.floor(Math.random() * allAnswers.length);
+    // console.log(randomIndex);
     switchAnswers.push(allAnswers[randomIndex]);
     allAnswers.splice(randomIndex, 1);
   }
   answer1.innerHTML = switchAnswers[0];
   answer2.innerHTML = switchAnswers[1];
   answer3.innerHTML = switchAnswers[2];
-}
-generateQuestion();
+};
 
 answer1.addEventListener('click', () => {
   if (answer1.innerHTML == answer) {

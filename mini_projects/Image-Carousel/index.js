@@ -3,16 +3,8 @@ const next = document.querySelector('.next');
 const images = document.querySelectorAll('.image-fade');
 const dots = document.querySelectorAll('.dot');
 
-previous.addEventListener('click', () => {
-  showImage(-1);
-});
-
-next.addEventListener('click', () => {
-  showImage(1);
-});
-
-var index = 0;
-function showImage(num) {
+let index = 0;
+const showImage = (num) => {
   index += num;
 
   for (const image of images) {
@@ -30,6 +22,12 @@ function showImage(num) {
 
   images[index].style.display = 'block';
   dots[index].classList.add('active');
-}
+};
 
-showImage(index);
+previous.addEventListener('click', () => {
+  showImage(-1);
+});
+
+next.addEventListener('click', () => {
+  showImage(1);
+});
