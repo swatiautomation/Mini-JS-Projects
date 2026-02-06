@@ -8,11 +8,7 @@ let milisecondsElapsed = 0;
 let minutesElapsed = 0;
 let intervalId = null;
 
-startBtn.addEventListener('click', () => startWatch());
-stopBtn.addEventListener('click', () => stopWatch());
-resetBtn.addEventListener('click', () => resetWatch());
-
-function setTime() {
+const setTime = () => {
   milisecondsElapsed++;
   if (milisecondsElapsed === 100) {
     milisecondsElapsed = 0;
@@ -22,27 +18,29 @@ function setTime() {
       minutesElapsed++;
     }
   }
-  const formattedMilliseconds =
-    milisecondsElapsed < 10 ? `0${milisecondsElapsed}` : milisecondsElapsed;
-  const formattedSeconds =
-    secondElapsed < 10 ? `0${secondElapsed}` : secondElapsed;
-  const formattedMinutes =
-    minutesElapsed < 10 ? `0${minutesElapsed}` : minutesElapsed;
+  const formattedMilliseconds = milisecondsElapsed.toString().padStart(2, '0');
+  const formattedSeconds = secondElapsed.toString().padStart(2, '0');
+  const formattedMinutes = minutesElapsed.toString().padStart(2, '0');
+
   time.textContent = `${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
-}
+};
 
-function startWatch() {
+const startWatch = () => {
   if (intervalId !== null) stopWatch();
-  intervalId = setInterval(setTime, 10);
-}
+  intervalId = setInterval(setTime, 100);
+};
 
-function stopWatch() {
+const stopWatch = () => {
   clearInterval(intervalId);
-}
-function resetWatch() {
+};
+const resetWatch = () => {
   clearInterval(intervalId);
   time.textContent = '00:00:00';
   secondElapsed = 0;
   milisecondsElapsed = 0;
   minutesElapsed = 0;
-}
+};
+
+startBtn.addEventListener('click', () => startWatch());
+stopBtn.addEventListener('click', () => stopWatch());
+resetBtn.addEventListener('click', () => resetWatch());
