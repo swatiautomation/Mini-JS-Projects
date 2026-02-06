@@ -2,32 +2,16 @@ const submitBtn = document.querySelector('.submit-btn');
 const taskInput = document.querySelector('#task-input');
 const toDoContainer = document.querySelector('.to-do-items');
 
-taskInput.addEventListener('keypress', function (e) {
-  if (e.key === 'Enter') {
-    if (taskInput.value.trim() == '') {
-      alert('Please enter a task');
-      return;
-    }
-    addTask();
-  }
-});
+let todoList = [];
 
-submitBtn.addEventListener('click', () => {
-  if (taskInput.value.trim() == '') {
-    alert('Please enter a task');
-    return;
-  }
-  addTask();
-});
-
-function addTask() {
-  var divParent = document.createElement('div');
-  var divChild = document.createElement('div');
-  var checkIcon = document.createElement('i');
-  var delIcon = document.createElement('i');
+const createElement = (task) => {
+  const divParent = document.createElement('div');
+  const divChild = document.createElement('div');
+  const checkIcon = document.createElement('i');
+  const delIcon = document.createElement('i');
 
   divParent.className = 'item';
-  divParent.innerHTML = taskInput.value;
+  divParent.innerHTML = task;
 
   checkIcon.className = 'fa-solid fa-circle-check';
   checkIcon.style.color = 'lightgray';
@@ -40,21 +24,73 @@ function addTask() {
   divChild.appendChild(delIcon);
 
   divParent.appendChild(divChild);
-
+  return divParent;
+};
+const addTask = (item) => {
+  const divParent = createElement(item);
   toDoContainer.appendChild(divParent);
-
   taskInput.value = '';
+  saveToLocalStorageToDo(item);
+};
 
-  localStorageToDo(divParent.innerText);
-}
+const deleteItem = (e) => {
+  toDoContainer.removeChild(e.target.parentElement.parentElement);
+  deleteLocalStorageToDo(e.target.parentElement.parentElement);
+};
+
+const saveToLocalStorageToDo = (key) => {
+  todoList = JSON.parse(localStorage.getItem('toDoList')) || [];
+  todoList.push(key);
+  localStorage.setItem('toDoList', JSON.stringify(todoList));
+};
+
+const getLocalStorageToDo = () => {
+  todoList = JSON.parse(localStorage.getItem('toDoList')) || [];
+  console.log(todoList.length);
+  todoList.forEach((item) => {
+    const divParent = createElement(item);
+    toDoContainer.appendChild(divParent);
+  });
+};
+
+const deleteLocalStorageToDo = (key) => {
+  todoList = JSON.parse(localStorage.getItem('toDoList')) || [];
+  const todoText = key.childNodes[0].textContent;
+  const index = todoList.indexOf(todoText);
+
+  if (index !== -1) {
+    todoList.splice(index, 1);
+    localStorage.setItem('toDoList', JSON.stringify(todoList));
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  getLocalStorageToDo();
+});
+
+taskInput.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    if (taskInput.value.trim() == '') {
+      alert('Please enter a task');
+      return;
+    }
+    addTask(taskInput.value);
+  }
+});
+
+submitBtn.addEventListener('click', () => {
+  if (taskInput.value.trim() == '') {
+    alert('Please enter a task');
+    return;
+  }
+  addTask(taskInput.value);
+});
 
 toDoContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('fa-circle-check')) {
-    if (e.target.style.color === 'lightgray') {
-      e.target.style.color = 'green';
-    } else {
-      e.target.style.color = 'lightgray';
-    }
+    e.target.style.color === 'lightgray'
+      ? (e.target.style.color = 'green')
+      : (e.target.style.color = 'lightgray');
   }
 });
 
@@ -62,56 +98,4 @@ toDoContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('fa-trash')) {
     deleteItem(e);
   }
-});
-
-function deleteItem(e) {
-  toDoContainer.removeChild(e.target.parentElement.parentElement);
-  deleteLocalStorageToDo(e.target.parentElement.parentElement);
-}
-
-function localStorageToDo(key) {
-  let todoList = [];
-  todoList = JSON.parse(localStorage.getItem('toDoList')) || [];
-  todoList.push(key);
-  localStorage.setItem('toDoList', JSON.stringify(todoList));
-}
-
-function getLocalStorageToDo() {
-  let todoList = [];
-  todoList = JSON.parse(localStorage.getItem('toDoList')) || [];
-
-  todoList.forEach((item) => {
-    var divParent = document.createElement('div');
-    var divChild = document.createElement('div');
-    var checkIcon = document.createElement('i');
-    var delIcon = document.createElement('i');
-    divParent.className = 'item';
-    divParent.innerHTML = item;
-    checkIcon.className = 'fa-solid fa-circle-check';
-    checkIcon.style.color = 'lightgray';
-
-    divChild.appendChild(checkIcon);
-
-    delIcon.className = 'fa fa-trash';
-    delIcon.style.color = 'lightgray';
-    divChild.appendChild(delIcon);
-    divParent.appendChild(divChild);
-    toDoContainer.appendChild(divParent);
-  });
-}
-
-function deleteLocalStorageToDo(key) {
-  let todo = [];
-  todo = JSON.parse(localStorage.getItem('toDoList')) || [];
-  let todoText = key.innerText;
-  let index = todo.indexOf(todoText);
-
-  if (index !== -1) {
-    todo.splice(index, 1);
-    localStorage.setItem('toDoList', JSON.stringify(todo));
-  }
-}
-
-window.addEventListener('load', () => {
-  getLocalStorageToDo();
 });

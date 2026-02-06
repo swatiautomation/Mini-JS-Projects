@@ -8,15 +8,13 @@ const humidity = document.querySelector('#humidity');
 const windSpeed = document.querySelector('#wind-speed');
 const locationNotFound = document.querySelector('.location-not-found');
 
-searchBtn.addEventListener('click', () => {
-  checkWeather(inputBox.value);
-});
+const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?q=';
+const apiKey = '52ab7841c8146cf28541333a5afa227a';
 
-async function checkWeather(city) {
-  const apiKey = '52ab7841c8146cf28541333a5afa227a';
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
-
+const checkWeather = async (city) => {
+  const url = `${baseUrl}${city}&appid=${apiKey}`;
   const weather_data = await fetch(url).then((response) => response.json());
+  // console.log(weather_data);
 
   if (weather_data.cod === '404') {
     locationNotFound.style.display = 'flex';
@@ -26,8 +24,6 @@ async function checkWeather(city) {
 
   locationNotFound.style.display = 'none';
   weatherBody.style.display = 'flex';
-
-  // console.log(weather_data);
   temperature.innerHTML = `${Math.round(weather_data.main.temp - 273.15)}°C`;
   description.innerHTML = `${weather_data.weather[0].description}`;
   humidity.innerHTML = `Humidity: ${weather_data.main.humidity}%`;
@@ -53,4 +49,14 @@ async function checkWeather(city) {
       weatherIcon.src = './assets/404.png';
       break;
   }
-}
+};
+
+searchBtn.addEventListener('click', () => {
+  checkWeather(inputBox.value);
+});
+
+inputBox.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    checkWeather(inputBox.value);
+  }
+});

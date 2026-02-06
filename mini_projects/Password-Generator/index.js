@@ -8,22 +8,12 @@ const symbols = document.querySelector('#symbols');
 const generateBtn = document.querySelector('#generateBtn');
 const copyIcon = document.querySelector('#copyIcon');
 
-sliderValue.textContent = inputSlider.value;
+const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+const numberChars = '0123456789';
+const symbolChars = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
 
-inputSlider.addEventListener('input', () => {
-  sliderValue.textContent = inputSlider.value;
-});
-
-generateBtn.addEventListener('click', () => {
-  passBox.value = generatePassword();
-});
-
-let uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-let lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
-let numberChars = '0123456789';
-let symbolChars = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
-
-function generatePassword() {
+const generatePassword = () => {
   let generatePassword = '';
   let allChars = '';
 
@@ -33,18 +23,18 @@ function generatePassword() {
   allChars += symbols.checked ? symbolChars : '';
 
   if (allChars === '' || allChars.length == 0) {
-    return generatePassword;
+    alert('Please select at least one character type!');
   }
 
   let i = 1;
   while (i <= inputSlider.value) {
     generatePassword += allChars.charAt(
-      Math.floor(Math.random() * allChars.length)
+      Math.floor(Math.random() * allChars.length),
     );
     i++;
   }
   return generatePassword;
-}
+};
 
 copyIcon.addEventListener('click', () => {
   if (passBox.value === '') return;
@@ -55,4 +45,11 @@ copyIcon.addEventListener('click', () => {
     copyIcon.textContent = 'content_copy';
     copyIcon.title = '';
   }, 2000);
+});
+inputSlider.addEventListener('input', () => {
+  sliderValue.textContent = inputSlider.value;
+});
+
+generateBtn.addEventListener('click', () => {
+  passBox.value = generatePassword();
 });
