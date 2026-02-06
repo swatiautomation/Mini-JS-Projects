@@ -81,6 +81,7 @@ async function convertCurrency() {
     result.innerHTML = `${amt} ${fromCurrencyValue} = ${convertedAmt} ${toCurrencyValue}`;
   } catch (error) {
     converterContainer.innerHTML = 'Error in conversion';
+    throw new Error('Error in conversion');
   }
 }
 
