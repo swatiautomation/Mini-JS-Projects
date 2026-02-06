@@ -1,15 +1,10 @@
-const digitalClock = document.querySelector('.digitalClock');
 const hr = document.querySelector('#hours');
 const min = document.querySelector('#minutes');
 const timeFormate = document.querySelector('#ampm');
 const day = document.querySelector('#day');
 
-window.addEventListener('load', () => {
-  setInterval(updateClock, 1000);
-});
-
-function updateClock() {
-  let date = new Date();
+const updateClock = () => {
+  const date = new Date();
 
   const dayNum = date.getDay();
   let hours = date.getHours();
@@ -26,15 +21,16 @@ function updateClock() {
     'Saturday',
   ];
 
-  hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-  // hours = hours < 10 ? '0' + hours : hours;
-  hours = hours.toString().padStart(2, '0');
-  //minutes = minutes < 10 ? '0' + minutes : minutes;
+  const changedTo12HourFormat = hours % 12 ? hours % 12 : 12;
+  hours = changedTo12HourFormat.toString().padStart(2, '0');
   minutes = minutes.toString().padStart(2, '0');
 
   day.innerHTML = dayName[dayNum];
   hr.innerHTML = hours;
   min.innerHTML = minutes;
   timeFormate.innerHTML = ampm;
-}
+};
+
+window.addEventListener('load', () => {
+  setInterval(updateClock, 1000);
+});
