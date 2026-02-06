@@ -11,9 +11,8 @@ input.addEventListener('keydown', (event) => {
   }
 });
 
-function getMessage() {
+const getMessage = () => {
   const inputText = input.value;
   document.querySelector('#message-output').innerHTML = inputText;
-
   input.value = '';
-}
+};

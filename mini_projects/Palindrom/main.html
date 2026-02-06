@@ -1,16 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Palindrom</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Palindrome Checker</h1>
+    <div class="container">
+      <h1>Palindrome Checker</h1>
+      <input type="text" id="inputText" placeholder="Enter string..." />
+      <button id="checkButton">Check</button>
+      <div id="msg"></div>
+    </div>
 
-    <input type="text" id="inputText" placeholder="String to check" />
-    <button id="checkButton">Check</button>
-    <div id="msg"></div>
     <script src="index.js"></script>
   </body>
 </html>
