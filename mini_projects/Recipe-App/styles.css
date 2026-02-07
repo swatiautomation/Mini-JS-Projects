@@ -23,6 +23,10 @@ header nav h1 {
   letter-spacing: 1px;
   text-transform: uppercase;
 }
+#header-title a {
+  text-decoration: none;
+  color: white;
+}
 
 header nav form {
   display: flex;
@@ -58,7 +62,7 @@ form button:hover,
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 40px;
-  width: 70%;
+  width: 95%;
   margin: 40px auto;
   place-items: center;
 }
@@ -71,7 +75,7 @@ form button:hover,
   overflow: hidden;
   background-color: white;
   color: black;
-  cursor: pointer;
+  /* cursor: pointer; */
   max-width: 350px;
   transition: transform 0.3s ease-in-out;
 }
@@ -102,6 +106,23 @@ form button:hover,
   cursor: pointer;
   font-weight: bold;
   /* display: none; */
+}
+
+.videoBtn {
+  margin: 15px auto;
+  padding: 10px;
+  /* font-size: 18px; */
+  background-color: rgb(15, 15, 16);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font: fit-content;
+  /* display: none; */
+}
+.videoBtn:hover {
+  background-color: rgb(48, 48, 48);
 }
 .recipe-details {
   display: none;

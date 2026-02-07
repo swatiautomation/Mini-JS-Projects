@@ -29,7 +29,17 @@ async function fetchRecipes(searchTerm) {
       mealDiv.innerHTML = `<img src="${meal.strMealThumb}"/>
     <h3>${meal.strMeal}</h3>
     <p><strong>${meal.strArea}</strong> Dish</p>
-    <p>Belongs to <strong>${meal.strCategory}</strong> Category</p>`;
+    <p>Belongs to <strong>${meal.strCategory}</strong> Category</p>
+    <p> ${meal.strTags ? meal.strTags : 'No tags available'}</p>`;
+
+      const button1 = document.createElement('button');
+      button1.textContent = 'Watch Video';
+      button1.classList.add('videoBtn');
+      mealDiv.appendChild(button1);
+
+      button1.addEventListener('click', () => {
+        window.open(meal.strYoutube, '_blank');
+      });
 
       const button = document.createElement('button');
       button.textContent = 'View Recipe';
