@@ -1,26 +1,19 @@
 const recipeContainer = document.querySelector('.recipe-container');
 const inputBox = document.querySelector('#inputBox');
 const searchBtn = document.querySelector('.searchBtn');
-const form = document.querySelector('form');
 const recipeDetailsContent = document.querySelector('.recipe-details-content');
-const recipeDetails = document.querySelector('.recipe-details');
 const recipeCloseBtn = document.querySelector('.recipeCloseBtn');
 
-searchBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  const searchTerm = inputBox.value.trim();
-  if (!searchTerm) return;
-  fetchRecipes(searchTerm);
-});
+const baseUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 
-async function fetchRecipes(searchTerm) {
+const fetchRecipes = async (searchTerm) => {
   recipeContainer.innerHTML = '<h2>Featching recipes...</h2>';
   try {
-    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`;
+    const url = `${baseUrl}${searchTerm}`;
     const response = await fetch(url);
     const data = await response.json();
 
-    console.log(data);
+    // console.log(data);
     recipeContainer.innerHTML = '';
 
     data.meals.forEach((meal) => {
@@ -53,11 +46,12 @@ async function fetchRecipes(searchTerm) {
       recipeContainer.appendChild(mealDiv);
     });
   } catch (error) {
+    console.error(error.message);
     recipeContainer.innerHTML = `<img src="./image/no-image.png" style="font-size: 20px;height: 400px;width: 400px" />`;
   }
-}
+};
 
-function openRecipePopup(meal) {
+const openRecipePopup = (meal) => {
   recipeDetailsContent.innerHTML = `<h2 class="recipe-title">${
     meal.strMeal
   }</h2>
@@ -69,9 +63,9 @@ function openRecipePopup(meal) {
   </div>`;
 
   recipeDetailsContent.parentElement.style.display = 'block';
-}
+};
 
-function fetchIngredients(meal) {
+const fetchIngredients = (meal) => {
   let ingredientList = '';
 
   for (let i = 1; i <= 20; i++) {
@@ -84,8 +78,15 @@ function fetchIngredients(meal) {
     }
   }
   return ingredientList;
-}
+};
 
 recipeCloseBtn.addEventListener('click', () => {
   recipeDetailsContent.parentElement.style.display = 'none';
+});
+
+searchBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  const searchTerm = inputBox.value.trim();
+  if (!searchTerm) return;
+  fetchRecipes(searchTerm);
 });
