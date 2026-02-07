@@ -4,9 +4,7 @@ const amountInput = document.querySelector('#amount');
 const guestInput = document.querySelector('#guest');
 const tipAmountDisplay = document.querySelector('#tip-amount');
 
-calculateButton.addEventListener('click', calculate);
-
-function calculate() {
+const calculate = () => {
   const tip = (
     (amountInput.value * selectDropDown.value) /
     guestInput.value
@@ -22,12 +20,13 @@ function calculate() {
     tipAmountDisplay.innerText = `Each person should pay: $${tip}`;
     showTipAmount();
   }
-}
+};
 
-function showTipAmount() {
-  var x = tipAmountDisplay;
-  x.className = 'show';
+const showTipAmount = () => {
+  tipAmountDisplay.className = 'show';
   setTimeout(() => {
-    x.className = x.className.replace('show', '');
-  }, 3000);
-}
+    tipAmountDisplay.className = tipAmountDisplay.className.replace('show', '');
+  }, 5000);
+};
+
+calculateButton.addEventListener('click', calculate);

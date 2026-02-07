@@ -1,7 +1,5 @@
 const title = document.querySelector('#title');
 const nameField = document.querySelector('#nameField');
-const emailField = document.querySelector('#emailField');
-const passwordField = document.querySelector('#passwordField');
 const login = document.querySelector('#login');
 const signupLink = document.querySelector('#signupLink');
 

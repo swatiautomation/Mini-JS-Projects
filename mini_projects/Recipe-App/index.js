@@ -32,7 +32,7 @@ async function fetchRecipes(searchTerm) {
     <p>Belongs to <strong>${meal.strCategory}</strong> Category</p>`;
 
       const button = document.createElement('button');
-      button.textContent = 'Get Recipe';
+      button.textContent = 'View Recipe';
       button.classList.add('recipeBtn');
       mealDiv.appendChild(button);
 
