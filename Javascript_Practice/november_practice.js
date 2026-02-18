@@ -393,3 +393,27 @@ console.log(arr3);
 
 //  arr3.slice(5,1);
 //     console.log(arr3);
+
+//-----------------------------------------------
+// Interview question : you are given a binary string : transform it into an altrnative binary string using operation :
+// select any bit and flip it (change 0-> 1 and 1>0).
+// Find the mininum number of operrations required to make this strig alternative. write program for this please.
+
+function minOperation(str) {
+  let alt1 = 0; // starts with 0
+  let alt2 = 0; // starts with 1
+
+  for (let i = 0; i < str.length; i++) {
+    const expectedAlt1 = i % 2 === 0 ? '0' : '1';
+    const expectedAlt2 = i % 2 === 0 ? '1' : '0';
+
+    if (str[i] !== expectedAlt1) alt1++;
+    if (str[i] !== expectedAlt2) alt2++;
+  }
+
+  return Math.min(alt1, alt2);
+}
+
+console.log(minOperation('1100')); // 2
+console.log(minOperation('1001')); // 2
+console.log(minOperation('1111')); // 2
