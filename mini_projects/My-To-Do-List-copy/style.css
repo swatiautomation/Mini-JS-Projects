@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fredoka:wght@300..700&family=Luckiest+Guy&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poiret+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: aliceblue;
+}
+.container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+}
+.input-container {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+
+  padding: 20px;
+}
+
+.input-container input {
+  border: none;
+  outline: none;
+
+  padding: 12px;
+  font-size: 16px;
+  margin-block: 12px;
+  border-radius: 5px;
+}
+
+.input-container input[type='text'] {
+  width: 70%;
+}
+.input-container input[type='button'] {
+  background-color: green;
+  color: white;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.input-container input[type='button']:hover {
+  background-color: rgb(92, 149, 92);
+}
+ul {
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+ul li {
+  list-style: none;
+  width: 100%;
+  background-color: white;
+  border: 0.5px solid rgb(208, 197, 197);
+  margin-block-end: 10px;
+  padding: 6px 12px;
+  font-size: 18px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+ul li:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  background-color: rgb(224, 222, 222);
+}
+ul li p {
+  flex-grow: 1;
+}
+
+.btn {
+  border: none;
+  font-size: 16px;
+  outline: none;
+  background: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.delete-btn {
+  color: red;
+
+  margin-left: 10px;
+}
+
+.edit-btn {
+  color: green;
+  margin-left: 10px;
+}
