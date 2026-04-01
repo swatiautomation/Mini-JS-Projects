@@ -21,39 +21,32 @@ async function loadImg(word, pageNo) {
 
   const url = `${baseUrl}${word}&per_page=30&page=${pageNo}&client_id=BekaH84Ex6BqFGpDpfV1TUvNJoNxwu32YKIifMcp5Ok`;
 
-  await fetch(url)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else throw new Error('Error in fetching images');
-    })
-    .then((data) => {
-      console.log(data);
+  const response = await fetch(url);
+  const data = await response.json();
 
-      if (data.results.length > 0) {
-        data.results.forEach((photo) => {
-          const imgDiv = document.createElement('div');
-          imgDiv.className = 'img';
-          imgDiv.style.backgroundImage = `url(${photo.urls.regular})`;
+  if (data.results.length > 0) {
+    data.results.forEach((photo) => {
+      const imgDiv = document.createElement('div');
+      imgDiv.className = 'img';
+      imgDiv.style.backgroundImage = `url(${photo.urls.regular})`;
 
-          const tooltip = document.createElement('div');
-          tooltip.classList.add('tooltip');
-          tooltip.innerText = `${photo.alt_description}`;
-          imgDiv.appendChild(tooltip);
+      const tooltip = document.createElement('div');
+      tooltip.classList.add('tooltip');
+      tooltip.innerText = `${photo.alt_description}`;
+      imgDiv.appendChild(tooltip);
 
-          imgDiv.addEventListener('click', () => {
-            window.open(photo.links.download, '_blank');
-          });
-          grid.appendChild(imgDiv);
-        });
-        data.total_pages === pageNo
-          ? (loadMoreBtn.style.display = 'none')
-          : (loadMoreBtn.style.display = 'block');
-      } else {
-        grid.innerHTML = `<h2>No results found</h2>`;
-        loadMoreBtn.style.display = 'none';
-      }
+      imgDiv.addEventListener('click', () => {
+        window.open(photo.links.download, '_blank');
+      });
+      grid.appendChild(imgDiv);
     });
+    data.total_pages === pageNo
+      ? (loadMoreBtn.style.display = 'none')
+      : (loadMoreBtn.style.display = 'block');
+  } else {
+    grid.innerHTML = `<h2>No results found</h2>`;
+    loadMoreBtn.style.display = 'none';
+  }
 }
 
 removeImages = () => {

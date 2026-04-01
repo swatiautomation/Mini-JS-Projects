@@ -46,7 +46,7 @@ const saveToLocalStorageToDo = (key) => {
 
 const getLocalStorageToDo = () => {
   todoList = JSON.parse(localStorage.getItem('toDoList')) || [];
-  console.log(todoList.length);
+  // console.log(todoList.length);
   todoList.forEach((item) => {
     const divParent = createElement(item);
     toDoContainer.appendChild(divParent);

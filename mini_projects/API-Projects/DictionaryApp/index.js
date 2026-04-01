@@ -72,9 +72,11 @@ async function getWordDefinition(searchQueryWord) {
   try {
     result.innerHTML = 'Fetching definition...';
     const url = `${baseUrl}/${searchQueryWord}`;
-    const data = await fetch(url).then((response) => response.json());
-    console.log(data);
-    console.log(data.length);
+    const response = await fetch(url);
+    //  .then((response) => response.json());
+    const data = await response.json();
+    // console.log(data);
+    // console.log(data.length);
     const definition = data[0].meanings[0];
     html += `
   <div>
