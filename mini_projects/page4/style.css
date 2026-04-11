@@ -1,0 +1,202 @@
+* {
+  padding: 0;
+  marging: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+header {
+  height: 4rem;
+  width: 100%;
+}
+header nav {
+  display: flex;
+  height: 100%;
+  max-width: 80rem;
+
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  gap: 2rem;
+}
+nav .leftside {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+nav .leftside a {
+  text-decoration: none;
+  color: rgb(89, 85, 85);
+}
+nav .rightside {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+nav .rightside a {
+  text-decoration: none;
+  color: rgb(89, 85, 85);
+}
+nav .rightside button {
+  padding: 8px 15px;
+  background-color: rgb(34, 182, 240);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  border: none;
+}
+.middlepart {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; */
+  max-width: 35rem;
+  margin: 5rem auto;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.middlepart h2 {
+  margin-bottom: 1rem;
+}
+.middlepart h2 span {
+  color: rgb(34, 182, 240);
+}
+
+.middlepart p {
+  color: grey;
+  font-size: 10px;
+}
+.mainContainer {
+  height: 50rem;
+  width: 100%;
+  margin-bottom: 40rem;
+}
+.wrapper {
+  height: 100%;
+  max-width: 80rem;
+  margin: auto;
+  padding: 22px;
+  background-color: whitesmoke;
+}
+.smallNav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: whitesmoke;
+  border-radius: 50px;
+  /* padding: 3px 0; */
+  position: relative;
+}
+.smallNav .slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: yellow;
+  height: 60%;
+  width: 33.33%;
+  border-radius: 40px;
+}
+.smallNav .div1 {
+  padding: 10px 60px;
+  background-color: yellow;
+  border-radius: 20px;
+  margin: 20px;
+  z-index: 1;
+}
+.smallNav div {
+  /* background-color: grey; */
+  border-radius: 20px;
+  margin: 20px;
+  z-index: 1;
+}
+.bigPart {
+  margin: 20px;
+  display: flex;
+  gap: 1rem;
+  /* align-items: center; */
+  justify-content: center;
+  flex-direction: column;
+}
+.bigPart h3 {
+  font-size: 15px;
+}
+.bigPart .text {
+  font-size: 30px;
+  font-weight: bolder;
+}
+.bigPart .gridOne {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: rgb(230, 229, 229);
+  border-radius: 7px;
+  padding: 20px;
+  height: 10rem;
+  gap: 3rem;
+}
+.bigPart .gridOne i {
+  border-radius: 3px;
+  font-size: 30px;
+  margin: 10px;
+}
+.bigPart .gridTwo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: transparent;
+  border-radius: 7px;
+  padding: 20px;
+  height: 10rem;
+  gap: 3rem;
+}
+.bigPart .gridTwo i {
+  border-radius: 3px;
+  font-size: 30px;
+  margin: 10px;
+  background-color: rgb(129, 129, 243);
+  border-radius: 100%;
+  margin: auto;
+}
+
+.bigPart button {
+  width: fit-content;
+  background-color: transparent;
+
+  padding: 14px 22px;
+  border-color: black;
+  border-radius: 10px;
+  margin-left: 2rem;
+}
+.thirdpart {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-bottom: 30rem; */
+  height: 100%;
+}
+
+.thirdpart h1 {
+  color: white;
+}
+.thirdpart img {
+  width: 70px;
+  object-fit: cover;
+}
+.thirdpart p {
+  color: wheat;
+  text-align: center;
+  text-wrap: wrap;
+}
+.thirdpart button {
+  color: white;
+  background-color: skyblue;
+  padding: 10px 30px;
+  border-radius: 10px;
+}
