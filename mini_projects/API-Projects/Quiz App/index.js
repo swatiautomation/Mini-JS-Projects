@@ -4,6 +4,8 @@ const optionsBox = document.querySelector('.options');
 const startBtn = document.querySelector('.start');
 const nextBtn = document.querySelector('.nextBtn');
 const timer = document.querySelector('.timer');
+const scoreCard = document.querySelector('.scoreCard');
+const alertBox = document.querySelector('.alert');
 
 const quiz = [
   {
@@ -35,8 +37,20 @@ const quiz = [
   },
 ];
 let currentIndex = 0;
+let score = 0;
+let quizOver = false;
+
+const showAlert = (msg) => {
+  alertBox.style.display = 'block';
+  alertBox.textContent = msg;
+  setTimeout(() => {
+    alertBox.style.display = 'none';
+  }, 2000);
+};
 const showQuestion = () => {
   //console.log(quiz[currentIndex].choices);
+  // const randomIndex = Math.floor(Math.random() * quiz.length + 1);
+  // console.log(randomIndex);
   let questionDetails = quiz[currentIndex];
   questionBox.textContent = questionDetails.question;
   optionsBox.textContent = '';
@@ -47,7 +61,12 @@ const showQuestion = () => {
     optionsBox.append(choiceDiv);
 
     choiceDiv.addEventListener('click', (e) => {
-      choiceDiv.classList.toggle('selected');
+      const allOptions = optionsBox.children;
+      for (let opt of allOptions) {
+        opt.classList.remove('selected');
+      }
+      e.target.classList.add('selected');
+      const selectedAnswer = e.target.textContent;
     });
   }
 };
@@ -58,9 +77,21 @@ const checkAnswer = (e) => {
   const selectedAns = document.querySelector('.selected');
   const text = selectedAns.textContent;
   if (text === quiz[currentIndex].answer) {
-    alert('correct answer');
+    //  alert('correct answer');
+    showAlert('Correct Answer');
+    score++;
   } else {
-    alert('wrong answer');
+    showAlert(
+      `Wrong Answer ! ${quiz[currentIndex].answer} is your correct answer.`,
+    );
+    // alert('wrong answer');
+  }
+  currentIndex++;
+  if (currentIndex < quiz.length) {
+    showQuestion();
+  } else {
+    showScore();
+    quizOver = true;
   }
 };
 
@@ -73,10 +104,41 @@ const showTimer = () => {
 };
 showTimer();
 
-nextBtn.addEventListener('click', () => {
-  checkAnswer();
-  // if (currentIndex < quiz.length) {
-  //   currentIndex++;
-  //   showQuestion();
+const showScore = () => {
+  questionBox.textContent = '';
+  optionsBox.textContent = '';
+
+  scoreCard.style.display = 'block';
+  scoreCard.textContent = `You scored ${score} out of ${quiz.length}`;
+  // if (score === '4') {
+  //   showAlert('Congratulation!! you Passed the quiz !!');
+  // } else {
+  //   showAlert('Try again next time');
   // }
+  nextBtn.textContent = 'Play Again';
+  // nextBtn.addEventListener('click', () => {
+  //   currentIndex = 0;
+  //   showQuestion();
+  //   nextBtn.textContent = 'NEXT';
+  //   scoreCard.style.display = 'none';
+  // });
+};
+
+nextBtn.addEventListener('click', () => {
+  const selectedChoice = document.querySelector('.selected');
+  if (!selectedChoice && nextBtn.textContent === 'NEXT') {
+    // alert('please select one answer');
+    showAlert('Please select on answer');
+    return;
+  }
+  if (quizOver) {
+    nextBtn.textContent = 'NEXT';
+    scoreCard.style.display = 'none';
+    currentIndex = 0;
+    showQuestion();
+    quizOver = false;
+    score = 0;
+  } else {
+    checkAnswer();
+  }
 });
