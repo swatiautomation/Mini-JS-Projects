@@ -1,37 +1,34 @@
 const num = [1, 2, 2, 4];
 const fruits = ['orange', 'apple', 'banana', 'apple', 'orange', 'grapes'];
 
+console.log(fruits);
 fruits.push('Pineapple');
 console.log(fruits);
+
 fruits.pop();
 console.log(fruits);
 
-const newArray1 = [...fruits, ...num];
+const newArray1 = [...fruits, ...num]; // concat two array OR use CONCAT method
 console.log(newArray1);
 
-const newArray2 = num.splice(1, 2);
+const newArray2 = num.splice(1, 2); // return sliced items / changed original array
 console.log(newArray2);
 console.log(num);
-console.log(num.shift(1, 1));
+
+let res = num.shift(1, 1); // return deleted item
+console.log(res);
 
 const pop = [5, 1, 2, 3, 4, 5, 5];
-const newpop = pop.slice(0, 4);
+const newpop = pop.slice(0, 4); // return deleted item // doesn't change original array
 console.log(newpop);
+
 console.log(pop);
 console.log('-----------------------------------');
 
-console.log(fruits.sort());
+console.log(fruits.sort()); //sort works best on string items
 
 console.log('first index of apple :' + fruits.indexOf('apple')); //1
 console.log('last index of apple :' + fruits.lastIndexOf('apple')); //undefined
-console.log('first index of orange :' + fruits.indexOf('orange')); //1
-console.log('last index of orange :' + fruits.lastIndexOf('orange')); //undefined
-
-console.log('first index of banana :' + fruits.indexOf('banana')); //2
-console.log('last index of banana :' + fruits.lastIndexOf('banana')); //2
-
-console.log('first index of grapes :' + fruits.indexOf('grapes')); //1
-console.log('last index of grapes :' + fruits.lastIndexOf('grapes')); //undefined
 
 const findDuplicate = fruits.filter(
   (item, index) => fruits.indexOf(item) !== index,
@@ -55,7 +52,7 @@ console.log(fruits);
 
 //pop
 //pop is used to remove the last element from an array
-fruits.pop('kiwi');
+fruits.pop();
 console.log(fruits);
 
 //shift

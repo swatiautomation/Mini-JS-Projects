@@ -1,0 +1,46 @@
+.box {
+  height: 100px;
+  width: 100px;
+  background-color: black;
+  color: white;
+  border: 5px solid blue;
+  scale: 0.8;
+  transition: all linear 0.5s;
+}
+.box1 {
+  background-color: rgb(219, 233, 33);
+}
+
+/* button {
+  height: 100px;
+  width: 100px;
+  background-color: red;
+} */
+.error {
+  display: none;
+}
+
+.sidebar {
+  width: 20rem;
+  height: 100vh;
+  background-color: brown;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-100%);
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  background-color: brown;
+}
+.showsidebar {
+  transform: translate(0);
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
