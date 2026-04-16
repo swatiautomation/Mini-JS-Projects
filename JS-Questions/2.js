@@ -36,3 +36,13 @@ function getFileExtension2(filename) {
 console.log(getFileExtension2('document.pdf')); // 'pdf'
 console.log(getFileExtension2('image.jpeg'));
 console.log(getFileExtension2('archive.tar.gz')); // 'gz'
+
+const stringItem = 'swatisharma.exe';
+console.log(stringItem.split('.')[0]);
+console.log(stringItem.split('.')[1]);
+
+const strItem = 'My name is swati sharma';
+console.log(strItem.split(' ')[4]);
+console.log(strItem.split(' ').pop());
+console.log(strItem.split(' ').shift());
+console.log(strItem.push());
