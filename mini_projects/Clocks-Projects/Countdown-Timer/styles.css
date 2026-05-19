@@ -1,0 +1,77 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(145deg, rgb(52, 11, 232), rgb(11, 232, 197));
+  color: black;
+}
+h1 {
+  font-size: 48px;
+  margin-bottom: 40px;
+  letter-spacing: 1.5px;
+}
+.countdown {
+  display: flex;
+  /* gap: 20px; */
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  padding: 40px 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+.timer {
+  background-color: rgba(217, 217, 217, 0.908);
+  padding: 30px;
+  border-radius: 20px;
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-width: 100px;
+  max-width: 160px;
+}
+.timer .time {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.timer .label {
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.timer:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 580px) {
+  h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  .countdown {
+    flex-wrap: wrap;
+  }
+  .timer {
+    margin: 20px;
+    padding: 20px;
+    max-height: 150px;
+  }
+}

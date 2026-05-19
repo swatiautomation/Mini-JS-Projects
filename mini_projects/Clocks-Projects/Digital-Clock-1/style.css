@@ -1,0 +1,73 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: cursive;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('https://media.istockphoto.com/id/1494314522/photo/beautiful-seascape-on-blue-sky-at-summer-time.jpg?s=2048x2048&w=is&k=20&c=L9umptI1z28E29oaorrst8LvlXaOhbawGZ4xl7A6GXM=');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.clock {
+  /* background: transparent; */
+  padding: 30px 60px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 24vh;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+.clock h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #151515;
+}
+.clock span {
+  position: relative;
+  top: -10px;
+  margin-left: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 480px) and (max-width: 580px) {
+  .clock h1 {
+    font-size: 2rem;
+  }
+  .clock {
+    max-width: 400px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 350px) {
+  .clock h1 {
+    font-size: 1.3rem;
+  }
+  .clock span {
+    font-size: 1rem;
+  }
+  .clock {
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .clock h1 {
+    font-size: 0.9rem;
+  }
+  .clock span {
+    font-size: 0.6rem;
+  }
+  .clock {
+    width: 90%;
+  }
+}

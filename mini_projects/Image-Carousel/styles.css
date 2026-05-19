@@ -1,0 +1,95 @@
+.image-fade {
+  display: none;
+}
+.body {
+  background-color: rgb(245, 245, 60);
+}
+.container {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 80%;
+  flex-direction: column;
+  position: relative;
+}
+.image-fade img {
+  width: 100%;
+
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.previous {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+
+  color: rgb(15, 14, 14);
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+
+  color: rgb(15, 14, 14);
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.previous:hover {
+  background-color: rgba(104, 103, 103, 0.8);
+}
+.next:hover {
+  background-color: rgba(104, 103, 103, 0.8);
+}
+.dots {
+  text-align: center;
+  margin-top: 20px;
+}
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+.active {
+  background-color: #717171;
+}
+.fade {
+  animation: fade 1.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .conainter {
+    width: 100%;
+  }
+}

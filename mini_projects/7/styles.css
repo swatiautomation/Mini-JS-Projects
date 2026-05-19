@@ -1,0 +1,90 @@
+h4 {
+  text-align: center;
+  font-family: "Arial", sans-serif;
+  color: #ebe3e3;
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: 40px;
+}
+.container {
+  text-align: center;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.move-icon {
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+}
+body {
+  background-color: #181717;
+  font-family: "Arial", sans-serif;
+}
+.rock-div,
+.paper-div,
+.scissors-div {
+  width: 150px;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border-radius: 100px;
+  border: 3px solid #ffffff;
+  margin-right: 30px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin: 10px;
+  padding: 60px;
+}
+.reset-button,
+.auto-play-button {
+  height: 40px;
+  width: 120px;
+  font-weight: bold;
+  border-radius: 6px;
+  background-color: rgb(234, 178, 22);
+}
+.confirmation-dialog {
+  font-size: 20px;
+  margin-top: 20px;
+  color: #ebe3e3;
+  text-align: center;
+}
+.yes-button,
+.no-button {
+  margin-top: 20px;
+  height: 30px;
+  width: 80px;
+  margin-right: 10px;
+  font-weight: bold;
+  border-radius: 6px;
+  background-color: rgb(22, 178, 34);
+}
+.scoreContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  padding: 40px;
+}
+.computer-move {
+  font-size: 30px;
+  color: #ebe3e3;
+}
+.result {
+  font-size: 40px;
+  font-weight: bold;
+}
+.score {
+  font-size: 30px;
+  color: #ebe3e3;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Math for kids Application</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Luckiest+Guy&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poiret+One&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/styles.css" />
+  </head>
+  <body>
+    <audio id="myAudio" src="./audio/wrong.mp3"></audio>
+    <header>
+      <div class="container">
+        <h1>Math for Kids</h1>
+        <ul>
+          <li class="current"><a href="#">Home</a></li>
+          <li><a href="subtract.html">Subtraction</a></li>
+          <li><a href="division.html"> Division</a></li>
+          <li><a href="multiply.html"> Multiplication</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="wrapper">
+      <div class="equation">
+        <h1 id="num1" style="color: red">1</h1>
+        <h1 style="color: blueviolet">+</h1>
+        <h1 id="num2" style="color: rgb(240, 137, 12)">1</h1>
+        <h1 style="color: green">=</h1>
+        <h1 style="color: grey">?</h1>
+      </div>
+
+      <div class="answers-options">
+        <h1 id="answer1" class="answer">2</h1>
+        <h1 id="answer2" class="answer">3</h1>
+        <h1 id="answer3" class="answer">4</h1>
+      </div>
+    </div>
+
+    <script src="./scripts/add.js"></script>
+  </body>
+</html>

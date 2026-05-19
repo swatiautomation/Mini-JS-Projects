@@ -1,0 +1,157 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: rgb(67, 130, 130);
+  color: white;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+}
+
+h1 {
+  margin: 20px 0 40px 0;
+  text-decoration: underline;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 120px);
+  grid-template-rows: repeat(3, 120px);
+  /* gap: 10px; */
+}
+
+.cell {
+  border: 2px solid white;
+  /* border-bottom: none;
+  border-right: none; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  cursor: pointer;
+  font-weight: bold;
+  /* height: 120px; */
+}
+.cell:nth-child(3),
+.cell:nth-child(2),
+.cell:first-child {
+  border-top: none;
+}
+/* .cell:nth-child(3),
+.cell:nth-child(6),
+.cell:nth-child(9) {
+  border-right: none;
+} */
+
+.cell:nth-child(3n) {
+  border-right: none;
+}
+/* 
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9) {
+  border-bottom: none;
+} */
+
+.cell:nth-child(n + 7) {
+  border-bottom: none;
+}
+
+/* .cell:nth-child(7),
+.cell:nth-child(4),
+.cell:first-child {
+  border-left: none;
+} */
+
+.cell:nth-child(3n + 1) {
+  border-left: none;
+}
+.game-player {
+  margin-top: 30px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.player {
+  margin: 0 20px;
+  font-weight: bold;
+}
+.reset-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: white;
+  color: rgb(67, 130, 130);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.reset-button:hover {
+  background-color: rgb(200, 200, 200);
+}
+.cell.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: rgba(59, 57, 57, 0.2);
+}
+
+.alertBox {
+  position: absolute;
+  top: 0;
+  background-color: rgb(113, 113, 113);
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 20px;
+  font-weight: 600;
+  height: 40px;
+  display: none;
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+}
+@media (max-width: 768px) {
+  .game-board {
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+  }
+
+  .cell {
+    font-size: 1.5rem;
+  }
+  h1 {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 768px) {
+  .game-board {
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+  }
+
+  /* .cell {
+    font-size: 1.5rem;
+  } */
+
+  h1 {
+    font-size: 28px;
+    margin-top: 70px;
+    margin-bottom: 40px;
+  }
+  .reset-button {
+    margin-bottom: 100px;
+  }
+}
