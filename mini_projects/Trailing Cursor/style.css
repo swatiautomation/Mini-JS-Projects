@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+.pointerCursor {
+  height: 15px;
+  width: 15px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  transform: translate(-50%, -50%);
+}
+.shadowCursor {
+  height: 70px;
+  width: 70px;
+  background-color: red;
+  border-radius: 50%;
+  filter: blur(30px);
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  transform: translate(-50%, -50%);
+}

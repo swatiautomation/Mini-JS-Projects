@@ -1,0 +1,133 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+.container {
+  /* background: linear-gradient(to top right, red, blue); */
+  background: url('https://static.vecteezy.com/system/resources/thumbnails/011/591/668/small/dark-purple-pink-gradient-blur-background-vector.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper {
+  background: white;
+  width: 100%;
+  height: 100%;
+  max-width: 25rem;
+  min-height: 40rem;
+  /* display: flex;
+  margin: auto; */
+  border-radius: 10px;
+  padding: 2rem;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+  margin: 2rem;
+}
+form {
+  width: 100%;
+}
+.container .wrapper h1 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.text-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.text-fields:nth-child(2) {
+  margin-top: 1rem;
+}
+.text-fields label {
+  font-size: 0.9rem;
+  color: rgb(93, 92, 92);
+}
+
+.container .wrapper div {
+  width: 100%;
+  position: relative;
+}
+.container .wrapper input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgb(200, 198, 198);
+  padding-bottom: 6px;
+  padding-left: 2rem;
+}
+.input_box_icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.forgot-password {
+  font-size: 10px;
+  text-align: right;
+  padding: 2px 0;
+}
+.login-button {
+  border-radius: 20px;
+  padding: 5px 10px;
+  width: 100%;
+  margin: auto;
+  margin-top: 30px;
+  color: white;
+  background: linear-gradient(to right, rgb(132, 132, 231), rgb(10, 10, 211));
+}
+/* .parent {
+  width: 200px;
+  height: 200px;
+  background-color: red;
+  position: relative;
+}
+.child {
+  width: 50px;
+  height: 50px;
+  background-color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+
+.signupText {
+  font-size: 15px;
+  color: grey;
+  margin-top: 40px;
+  text-align: center;
+}
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+.social i {
+  /* color: white; */
+  font-size: 29px;
+  /* background-color: rgb(127, 133, 255); */
+  border-radius: 100%;
+  padding: 2px;
+}
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  margin-top: 50px;
+}

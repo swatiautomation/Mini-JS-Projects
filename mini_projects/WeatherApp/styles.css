@@ -1,0 +1,139 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+.container {
+  width: 400px;
+  height: min-content;
+  padding: 28px;
+  background: white;
+  border-radius: 10px;
+  /* box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  text-align: center; */
+}
+.search-box {
+  display: flex;
+  margin-bottom: 20px;
+  width: 100%;
+  height: min-content;
+  justify-content: space-between;
+  align-items: center;
+}
+.input-box {
+  width: 84%;
+  height: 40px;
+  text-transform: uppercase;
+  font-size: 20px;
+  padding: 12px 16px;
+  /* border: 2px solid black; */
+  border-radius: 5px;
+  background-color: #e6e6e6;
+  color: black;
+}
+
+input::placeholder {
+  color: black;
+  font-weight: 500;
+}
+
+.search-box button {
+  width: 46px;
+  height: 46px;
+  background-color: #e6e6e6;
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 50%;
+  cursor: pointer;
+  color: black;
+}
+.search-box button:hover {
+  background-color: #d4d4d4;
+  color: white;
+}
+.weather-body img {
+  width: 60%;
+}
+.weather-body {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-block: 20px;
+}
+.weather-box {
+  margin-block: 10px;
+  text-align: center;
+}
+.weather-box .temperature {
+  font-size: 48px;
+  font-weight: 700;
+  color: black;
+  position: relative;
+}
+
+.weather-box .temperature sup {
+  position: absolute;
+
+  font-size: 24px;
+  font-weight: 600;
+}
+.weather-box .description {
+  font-size: 24px;
+  font-weight: 500;
+  color: black;
+  text-transform: capitalize;
+}
+.weatherDetails {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%;
+}
+.humidity,
+.wind {
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+  display: flex;
+  align-items: center;
+}
+.weatherDetails i {
+  font-size: 36px;
+}
+.weatherDetails .text {
+  margin-left: 8px;
+  font-size: 16px;
+}
+.text span {
+  font-weight: 600;
+}
+.location-not-found {
+  margin-top: 20px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.location-not-found h1 {
+  color: black;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.location-not-found img {
+  width: 80%;
+}

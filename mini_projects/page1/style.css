@@ -1,0 +1,119 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+header {
+  height: 3.5rem;
+  width: 100%;
+  background-color: #fefefe;
+  padding: 0 1rem;
+  /* display: flex;
+  justify-content: center; */
+}
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 60rem;
+  margin: auto;
+}
+
+.logo {
+  font-size: 30px;
+  font-family: cursive;
+}
+header .nav {
+  display: flex;
+  gap: 2rem;
+}
+header .menuIcon {
+  display: none;
+}
+.nav a {
+  text-decoration: none;
+  color: black;
+}
+.landingPage {
+  max-width: 60rem;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding: 5rem 1rem;
+  gap: 1.5rem;
+}
+.text {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+}
+p {
+  color: burlywood;
+}
+.image {
+  width: 50%;
+  padding: 2rem;
+}
+.image img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.button1 {
+  padding: 0.6rem 2rem;
+  background-color: rgb(133, 133, 244);
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  color: white;
+  font-weight: bold;
+}
+.button2 {
+  padding: 0.6rem 2rem;
+  background-color: grey;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .landingPage {
+    flex-direction: column;
+  }
+  .text {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .image {
+    width: 100%;
+  }
+  .allBtn {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  header .menuIcon {
+    display: block;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  header .nav {
+    display: none;
+  }
+}
