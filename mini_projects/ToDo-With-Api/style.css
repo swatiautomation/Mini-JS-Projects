@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  /* font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif; */
 }
 
 html,
@@ -10,8 +10,15 @@ body {
   width: 100%;
   height: 100%;
 }
+
+header {
+  padding: 20px;
+  background-color: #3f51b5;
+  color: white;
+  font-size: 20px;
+  font-weight: normal;
+}
 .container {
-  background-color: rgb(240, 222, 195);
   width: 100%;
   height: 100%;
   max-width: 60%;
@@ -20,24 +27,43 @@ body {
   margin: auto;
   border-radius: 5px;
 }
+
 .taskBar {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
-}
-#input {
-  padding: 10px 40px;
-  border-radius: 4px;
   margin: 20px;
+}
+#input,
+.editInput {
+  padding: 10px 12px;
+  border-radius: 4px;
+  flex: 1;
+  border: none;
+  box-shadow: 0 0 1.7px;
+}
+.addBtn {
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 0 1.7px;
+  cursor: not-allowed;
+}
+.addBtn.enabled {
+  background-color: #3f51b5;
+  color: white;
+  cursor: pointer;
 }
 button {
   padding: 10px 20px;
   border-radius: 4px;
-  background-color: azure;
+  border: none;
+  box-shadow: 0 0 1.7px;
 }
 button:hover {
-  background-color: aquamarine;
+  color: white;
+  background-color: #3f51b5;
 }
 .taskContainer {
   transition: all linear ease-in-out 2s;
@@ -48,24 +74,34 @@ button:hover {
 }
 
 .taskContent {
-  background-color: rgb(225, 184, 184);
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 5px;
-  box-shadow: 0 0 2px;
+  box-shadow: 0 0 1.7px;
   transition: all 0.3s ease-in-out;
 }
-.taskContent:hover {
-  background-color: rgb(239, 177, 177);
-  /* transform: scale(0.9); */
-}
+
 p {
   align-items: center;
   margin: 0px 10px;
 }
 .btnContainer {
   display: flex;
-  gap: 5px;
+  gap: 15px;
   flex-direction: row;
+  padding: 5px;
+}
+.taskContent.editing {
+  align-items: flex-start;
+}
+.editWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.editError {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
 }
