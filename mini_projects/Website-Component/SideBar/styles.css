@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 body {
   background-color: #c3c3c3;
@@ -54,7 +54,7 @@ nav .sidebar ul li a i {
 nav .sidebar .heading {
   color: white;
   font-size: 30px;
-  text-decoration: underline;
+  /* text-decoration: underline; */
   padding: 30px;
   background-color: blue;
 }
