@@ -7,37 +7,44 @@
 html,
 body {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  /* overflow: hidden; */
 }
 
 .container {
   width: 100%;
-  max-width: 40rem;
-  margin: 50px auto;
+  max-width: 30rem;
+  /* height: 100vh; */
+  margin: 20px auto;
   display: flex;
-  justify-content: center;
+  /* justify-content: center;*/
   align-items: center;
   flex-direction: column;
   background-color: rgb(233, 221, 221);
-  padding: 50px 20px;
-  gap: 20px;
+  /* padding: 50px 20px; */
+  gap: 10px;
   box-shadow: 0 0 10px black;
+  padding-bottom: 20px;
 }
 
 .title {
   font-size: 50px;
-  margin: 20px;
+  padding: 10px;
+  /* margin: 20px; */
 }
 
 #inputBox {
-  width: 100%;
-  padding: 10px 50px;
+  width: 99%;
+  /* padding: 10px 50px; */
+  padding: 10px;
   border-radius: 4px;
   border: 1px solid rgb(189, 181, 181);
 }
 .searchContainer {
+  /* border: red solid 4px; */
   display: flex;
   flex-direction: column;
+
   width: 100%;
   /* border: 3px solid black; */
   gap: 20px;
@@ -46,16 +53,25 @@ body {
 }
 .userContainer {
   display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+  box-shadow: 0 0 5px;
 }
 .image {
-  /* margin: 20px; */
-  border-radius: 50px;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   object-position: top;
+  flex-shrink: 0;
 }
 .userDetails {
-  margin: 20px;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 p {
   font-size: 20px;

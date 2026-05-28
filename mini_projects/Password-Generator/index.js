@@ -1,33 +1,35 @@
-const passBox = document.querySelector('#passBox');
-const inputSlider = document.querySelector('#inputSlider');
-const sliderValue = document.querySelector('#sliderValue');
-const lowercase = document.querySelector('#lowercase');
-const uppercase = document.querySelector('#uppercase');
-const numbers = document.querySelector('#numbers');
-const symbols = document.querySelector('#symbols');
-const generateBtn = document.querySelector('#generateBtn');
-const copyIcon = document.querySelector('#copyIcon');
+const passBox = document.querySelector("#passBox");
+const copyIcon = document.querySelector("#copyIcon");
+const inputSlider = document.querySelector("#inputSlider");
+const sliderValue = document.querySelector("#sliderValue");
+const lowercase = document.querySelector("#lowercase");
+const uppercase = document.querySelector("#uppercase");
+const numbers = document.querySelector("#numbers");
+const symbols = document.querySelector("#symbols");
+const generateBtn = document.querySelector("#generateBtn");
+const displayPass = document.querySelector(".passDisplay");
+const resetBtn = document.querySelector("#resetBtn");
 
-const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
-const numberChars = '0123456789';
-const symbolChars = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
+const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+const numberChars = "0123456789";
+const symbolChars = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
 
 const generatePassword = () => {
-  let generatePassword = '';
-  let allChars = '';
+  let generatePassword = "";
+  let allChars = "";
 
-  allChars += lowercase.checked ? lowercaseChars : '';
-  allChars += uppercase.checked ? uppercaseChars : '';
-  allChars += numbers.checked ? numberChars : '';
-  allChars += symbols.checked ? symbolChars : '';
+  allChars += lowercase.checked ? lowercaseChars : "";
+  allChars += uppercase.checked ? uppercaseChars : "";
+  allChars += numbers.checked ? numberChars : "";
+  allChars += symbols.checked ? symbolChars : "";
 
-  if (allChars === '' || allChars.length == 0) {
-    alert('Please select at least one character type!');
+  if (allChars === "" || allChars.length == 0) {
+    alert("Please select at least one character type!");
   }
 
-  let i = 1;
-  while (i <= inputSlider.value) {
+  let i = 0;
+  while (i < inputSlider.value) {
     generatePassword += allChars.charAt(
       Math.floor(Math.random() * allChars.length),
     );
@@ -36,20 +38,34 @@ const generatePassword = () => {
   return generatePassword;
 };
 
-copyIcon.addEventListener('click', () => {
-  if (passBox.value === '') return;
+copyIcon.addEventListener("click", () => {
+  if (passBox.value === "") return;
   navigator.clipboard.writeText(passBox.value);
-  copyIcon.textContent = 'check';
-  copyIcon.title = 'Password Copied';
+  displayPass.textContent = passBox.value;
+  copyIcon.textContent = "check";
+  copyIcon.title = "Password Copied";
   setTimeout(() => {
-    copyIcon.textContent = 'content_copy';
-    copyIcon.title = '';
+    copyIcon.textContent = "content_copy";
+    copyIcon.title = "";
   }, 2000);
 });
-inputSlider.addEventListener('input', () => {
+
+sliderValue.textContent = inputSlider.value;
+
+inputSlider.addEventListener("input", () => {
   sliderValue.textContent = inputSlider.value;
 });
 
-generateBtn.addEventListener('click', () => {
+generateBtn.addEventListener("click", () => {
   passBox.value = generatePassword();
+});
+resetBtn.addEventListener("click", () => {
+  passBox.value = "";
+  lowercase.checked = false;
+  uppercase.checked = false;
+  numbers.checked = false;
+  symbols.checked = false;
+  inputSlider.value = 0;
+  sliderValue.textContent = 0;
+  displayPass.textContent = "";
 });

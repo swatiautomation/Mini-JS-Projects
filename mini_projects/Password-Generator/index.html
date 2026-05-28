@@ -27,9 +27,9 @@
 
       <input
         type="range"
-        min="1"
+        min="0"
         max="30"
-        value="1"
+        value="0"
         class="rangeBox"
         id="inputSlider"
       />
@@ -38,23 +38,27 @@
         <span id="sliderValue"></span>
       </div>
 
-      <div class="row">
-        <label for="lowercase">Include Lowercase letters (a-z)</label>
-        <input type="checkbox" id="lowercase" checked />
-      </div>
-      <div class="row">
-        <label for="uppercase">Include Uppercase letters (A-Z)</label>
-        <input type="checkbox" id="uppercase" checked />
-      </div>
-      <div class="row">
-        <label for="numbers">Include Numbers (0-9)</label>
-        <input type="checkbox" id="numbers" checked />
-      </div>
-      <div class="row">
-        <label for="symbols">Include Symbols (!@#$%^&*)</label>
-        <input type="checkbox" id="symbols" checked />
+      <div class="rowlabel">
+        <div class="row">
+          <label for="lowercase">Include Lowercase letters (a-z)</label>
+          <input type="checkbox" id="lowercase" />
+        </div>
+        <div class="row">
+          <label for="uppercase">Include Uppercase letters (A-Z)</label>
+          <input type="checkbox" id="uppercase" />
+        </div>
+        <div class="row">
+          <label for="numbers">Include Numbers (0-9)</label>
+          <input type="checkbox" id="numbers" />
+        </div>
+        <div class="row">
+          <label for="symbols">Include Symbols (!@#$%^&*)</label>
+          <input type="checkbox" id="symbols" />
+        </div>
       </div>
       <button class="generateBtn" id="generateBtn">Generate Password</button>
+      <button class="resetBtn" id="resetBtn">Reset Password</button>
+      <span class="passDisplay"></span>
     </div>
     <script src="index.js"></script>
   </body>

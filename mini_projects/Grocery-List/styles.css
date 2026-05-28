@@ -3,8 +3,8 @@
   margin: 0;
 }
 body {
-  font-family: 'mumblers demo';
-  background-color: orange;
+  font-family: "mumblers demo";
+  background-color: rgba(255, 0, 0, 0.372);
 }
 
 .container {
