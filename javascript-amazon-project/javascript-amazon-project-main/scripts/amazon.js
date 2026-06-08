@@ -47,28 +47,10 @@ products.forEach((item) => {
     `;
 });
 
-//console.log(html);
-
 const body = document.querySelector(".js-products-grid");
 
 body.innerHTML = html;
 
-// function addToCart(productId, quantity) {
-//   let matchingItem;
-//   cart.forEach((item) => {
-//     if (productId === item.productId) {
-//       matchingItem = item;
-//     }
-//   });
-//   if (matchingItem) {
-//     matchingItem.quantity += Number(quantity);
-//   } else {
-//     cart.push({
-//       productId,
-//       quantity,
-//     });
-//   }
-// }
 function updateCartQuantity() {
   let cartQuantity = 0;
   cart.forEach((item) => {
