@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz app</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="screen active mainContainer">
+        <h1>Quiz Time</h1>
+        <p>Test your knowledge with these fun questions</p>
+        <button class="quizButton">Start Quiz</button>
+      </div>
+
+      <div class="screen quizContainer">
+        <h2 class="js-question">What is the capital of India?</h2>
+        <div class="midSection">
+          <p class="js-questionNumber">
+            Question <span class="js-current-question"></span> of
+            <span class="js-total-question"></span>
+          </p>
+          <p>Score:<span class="js-score"></span></p>
+        </div>
+        <div class="options js-options">
+          <div class="option">1</div>
+          <div class="option">2</div>
+          <div class="option">3</div>
+          <div class="option">4</div>
+        </div>
+
+        <div id="progressBarWrapper">
+          <div id="progressBar"></div>
+        </div>
+      </div>
+
+      <div class="resultContainer screen">
+        <h1>Quiz Results</h1>
+        <p>
+          You scored <span class="js-answer-got">5</span>out of
+          <span class="js-total-question-quiz"></span>
+        </p>
+        <h3 class="resultMessage">Keep studing! You'll get better.</h3>
+        <button class="restartBtn">Restart Quiz</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

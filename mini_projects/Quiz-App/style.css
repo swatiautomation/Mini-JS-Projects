@@ -1,0 +1,121 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(234, 206, 123);
+}
+.container {
+  background-color: white;
+  min-height: 140px;
+  width: 400px;
+  border-radius: 4px;
+  padding: 20px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  /* gap: 10px; */
+}
+
+.mainContainer {
+  /* background-color: white; */
+  /* min-height: 140px;
+  width: 400px;
+  border-radius: 4px;
+  padding: 20px; */
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  /* margin: auto; */
+  gap: 10px;
+}
+.mainContainer h1 {
+  color: orange;
+  font-size: 30px;
+  font-weight: bold;
+}
+.mainContainer p {
+  font-size: 10px;
+}
+.mainContainer button {
+  padding: 10px 20px;
+  border-radius: 3px;
+  border: none;
+  background-color: orange;
+  color: white;
+  cursor: pointer;
+}
+
+.midSection {
+  display: flex;
+  justify-content: space-between;
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.options div {
+  padding: 10px 50px;
+  background-color: rgb(237, 168, 41);
+  border-radius: 3px;
+  cursor: pointer;
+}
+#progressBarWrapper {
+  width: 100%;
+  height: 6px;
+  background-color: #eee;
+  border-radius: 3px;
+  overflow: hidden;
+}
+#progressBar {
+  height: 100%;
+  width: 0%;
+  background-color: #2196f3;
+  transition: width 0.4s ease, background-color 0.2s ease;
+}
+
+.resultContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.screen {
+  display: none;
+}
+.active {
+  display: block;
+}
+
+.option.correct {
+  background-color: #e6fff0;
+  border-color: #a3f0c4;
+  color: #28a745;
+}
+
+.option.incorrect {
+  background-color: #fff0f0;
+  border-color: #ffbdbd;
+  color: #dc3545;
+}
+
+#progressBar.correct {
+  background-color: #28a745;
+}
+#progressBar.incorrect {
+  background-color: #dc3545;
+}
