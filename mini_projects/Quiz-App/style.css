@@ -24,21 +24,13 @@ body {
   flex-direction: column;
   justify-content: center;
   margin: auto;
-  /* gap: 10px; */
 }
 
 .mainContainer {
-  /* background-color: white; */
-  /* min-height: 140px;
-  width: 400px;
-  border-radius: 4px;
-  padding: 20px; */
-
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  /* margin: auto; */
   gap: 10px;
 }
 .mainContainer h1 {
@@ -84,7 +76,9 @@ body {
   height: 100%;
   width: 0%;
   background-color: #2196f3;
-  transition: width 0.4s ease, background-color 0.2s ease;
+  transition:
+    width 0.4s ease,
+    background-color 0.2s ease;
 }
 
 .resultContainer {
