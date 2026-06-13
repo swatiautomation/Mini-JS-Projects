@@ -1,55 +1,70 @@
-const recipeContainer = document.querySelector('.recipe-container');
-const inputBox = document.querySelector('#inputBox');
-const searchBtn = document.querySelector('.searchBtn');
-const recipeDetailsContent = document.querySelector('.recipe-details-content');
-const recipeCloseBtn = document.querySelector('.recipeCloseBtn');
+const recipeContainer = document.querySelector(".recipe-container");
+const inputBox = document.querySelector("#inputBox");
+const searchBtn = document.querySelector(".searchBtn");
+const recipeDetailsContent = document.querySelector(".recipe-details-content");
+const recipeCloseBtn = document.querySelector(".recipeCloseBtn");
 
-const baseUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+const baseUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
-const fetchRecipes = async (searchTerm) => {
-  recipeContainer.innerHTML = '<h2>Featching recipes...</h2>';
+let allMeals = [];
+
+async function fetchAllRecipes() {
   try {
-    const url = `${baseUrl}${searchTerm}`;
-    const response = await fetch(url);
+    const response = await fetch(baseUrl);
     const data = await response.json();
-
-    // console.log(data);
-    recipeContainer.innerHTML = '';
-
-    data.meals.forEach((meal) => {
-      const mealDiv = document.createElement('div');
-      mealDiv.classList.add('meal');
-      mealDiv.innerHTML = `<img src="${meal.strMealThumb}"/>
-    <h3>${meal.strMeal}</h3>
-    <p><strong>${meal.strArea}</strong> Dish</p>
-    <p>Belongs to <strong>${meal.strCategory}</strong> Category</p>
-    <p> ${meal.strTags ? meal.strTags : 'No tags available'}</p>`;
-
-      const button1 = document.createElement('button');
-      button1.textContent = 'Watch Video';
-      button1.classList.add('videoBtn');
-      mealDiv.appendChild(button1);
-
-      button1.addEventListener('click', () => {
-        window.open(meal.strYoutube, '_blank');
-      });
-
-      const button = document.createElement('button');
-      button.textContent = 'View Recipe';
-      button.classList.add('recipeBtn');
-      mealDiv.appendChild(button);
-
-      button.addEventListener('click', () => {
-        openRecipePopup(meal);
-      });
-
-      recipeContainer.appendChild(mealDiv);
-    });
+    allMeals = data.meals || [];
+    renderRecipes(allMeals);
   } catch (error) {
     console.error(error.message);
     recipeContainer.innerHTML = `<img src="./image/no-image.png" style="font-size: 20px;height: 400px;width: 400px" />`;
   }
-};
+}
+fetchAllRecipes();
+
+function renderRecipes(meals) {
+  recipeContainer.innerHTML = "";
+  if (!meals.length) {
+    recipeContainer.innerHTML = "<h2>No recipes found</h2>";
+    return;
+  }
+  meals.forEach((meal) => {
+    const mealDiv = document.createElement("div");
+    mealDiv.classList.add("meal");
+    mealDiv.innerHTML = `<img src="${meal.strMealThumb}"/>
+    <h3>${meal.strMeal}</h3>
+    <p><strong>${meal.strArea}</strong> Dish</p>
+    <p>Belongs to <strong>${meal.strCategory}</strong> Category</p>
+    <p> ${meal.strTags ? meal.strTags : "No tags available"}</p>`;
+
+    const button1 = document.createElement("button");
+    button1.textContent = "Watch Video";
+    button1.classList.add("videoBtn");
+    mealDiv.appendChild(button1);
+
+    button1.addEventListener("click", () => {
+      window.open(meal.strYoutube, "_blank");
+    });
+
+    const button = document.createElement("button");
+    button.textContent = "View Recipe";
+    button.classList.add("recipeBtn");
+    mealDiv.appendChild(button);
+
+    button.addEventListener("click", () => {
+      openRecipePopup(meal);
+    });
+
+    recipeContainer.appendChild(mealDiv);
+  });
+}
+
+function filterRecipes() {
+  const term = inputBox.value.trim().toLowerCase();
+  const filtered = term
+    ? allMeals.filter((meal) => meal.strMeal.toLowerCase().includes(term))
+    : allMeals;
+  renderRecipes(filtered);
+}
 
 const openRecipePopup = (meal) => {
   recipeDetailsContent.innerHTML = `<h2 class="recipe-title">${
@@ -62,11 +77,11 @@ const openRecipePopup = (meal) => {
   <p > ${meal.strInstructions}</p>
   </div>`;
 
-  recipeDetailsContent.parentElement.style.display = 'block';
+  recipeDetailsContent.parentElement.style.display = "block";
 };
 
 const fetchIngredients = (meal) => {
-  let ingredientList = '';
+  let ingredientList = "";
 
   for (let i = 1; i <= 20; i++) {
     const Ingredient = meal[`strIngredient${i}`];
@@ -80,13 +95,13 @@ const fetchIngredients = (meal) => {
   return ingredientList;
 };
 
-recipeCloseBtn.addEventListener('click', () => {
-  recipeDetailsContent.parentElement.style.display = 'none';
+recipeCloseBtn.addEventListener("click", () => {
+  recipeDetailsContent.parentElement.style.display = "none";
 });
 
-searchBtn.addEventListener('click', (e) => {
+inputBox.addEventListener("input", filterRecipes);
+
+searchBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  const searchTerm = inputBox.value.trim();
-  if (!searchTerm) return;
-  fetchRecipes(searchTerm);
+  filterRecipes();
 });

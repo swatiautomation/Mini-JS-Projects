@@ -19,6 +19,9 @@ resetButton.addEventListener("click", () => {
   showResetConfirmation();
 });
 
+let isAutoPlaying = false;
+let intervalId;
+
 // Score Object
 
 let score = JSON.parse(localStorage.getItem("score")) || {
@@ -27,6 +30,17 @@ let score = JSON.parse(localStorage.getItem("score")) || {
   ties: 0,
 };
 
+if (score) {
+  updateScore();
+}
+
+function stopAutoPlay() {
+  if (!isAutoPlaying) return;
+
+  clearInterval(intervalId);
+  isAutoPlaying = false;
+  autoPlayButton.innerText = "Auto Play";
+}
 // Reset Score Function
 
 function resetScore() {
@@ -38,14 +52,15 @@ function resetScore() {
   computerMoveDiv.innerText = "";
   resultMessageDiv.innerText = "";
   confirmationDialog.innerHTML = "";
+  stopAutoPlay();
 }
 
 // Confirmation Dialog
 
 function showResetConfirmation() {
   confirmationDialog.innerHTML = `<div> Are you sure you want to reset the score?</div>
-    <button class="yes-button"> Yes </button>
-    <button class="no-button"> No </button>`;
+    <button class="yes-button">Yes</button>
+    <button class="no-button">No</button>`;
 
   const yesButton = document.querySelector(".yes-button");
   const noButton = document.querySelector(".no-button");
@@ -56,6 +71,9 @@ function showResetConfirmation() {
   noButton.addEventListener("click", () => {
     confirmationDialog.innerHTML = "";
   });
+
+  confirmationDialog.scrollIntoView({ behavior: "smooth", block: "center" });
+  noButton.focus();
 }
 
 // Update Score Display
@@ -72,23 +90,26 @@ function showResult(message, color) {
   resultMessageDiv.style.color = color;
 
   if (message === "You win!") {
-    score.wins += 1;
+    score.wins++;
   } else if (message === "You loose!") {
-    score.losses += 1;
+    score.losses++;
   } else {
-    score.ties += 1;
+    score.ties++;
   }
 
   saveToLocalStorage(score);
   updateScore();
 }
 
+function pickComputerMove() {
+  const moves = ["rock", "paper", "scissors"];
+  const computerMove = moves[Math.floor(Math.random() * moves.length)];
+  return computerMove;
+}
 // Game Logic
 
 function play(playerMove) {
-  const move = ["rock", "paper", "scissors"];
-  const computerMove = move[Math.floor(Math.random() * move.length)];
-
+  const computerMove = pickComputerMove();
   computerMoveDiv.innerHTML = `You
       <img src="./images/${playerMove}-emoji.png" class="move-icon" />
       <img src="./images/${computerMove}-emoji.png" class="move-icon" />
@@ -132,21 +153,17 @@ document.body.addEventListener("keydown", (event) => {
 
 // Auto Play Functionality
 
-let isAutoPlaying = false;
-let intervalId;
 function autoPlay() {
   if (!isAutoPlaying) {
-    const moves = ["rock", "paper", "scissors"];
+    const randomMove = pickComputerMove();
     intervalId = setInterval(() => {
-      const randomMove = moves[Math.floor(Math.random() * moves.length)];
       play(randomMove);
     }, 1000);
     isAutoPlaying = true;
     autoPlayButton.innerText = "Stop Playing";
+    confirmationDialog.innerHTML = "";
   } else {
-    clearInterval(intervalId);
-    isAutoPlaying = false;
-    autoPlayButton.innerText = "Auto Play";
+    stopAutoPlay();
   }
 }
 
@@ -155,12 +172,3 @@ function autoPlay() {
 function saveToLocalStorage(value) {
   localStorage.setItem("score", JSON.stringify(value));
 }
-
-function getFromLocalStorage() {
-  const storedScore = JSON.parse(localStorage.getItem("score"));
-  if (storedScore) {
-    score = storedScore;
-  }
-  updateScore();
-}
-document.addEventListener("DOMContentLoaded", getFromLocalStorage);

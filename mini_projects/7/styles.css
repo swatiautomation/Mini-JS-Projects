@@ -1,3 +1,18 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+html,body{
+  height: 100vh;
+  width: 100vw;
+}
+.mainContainer{
+
+  display: flex;
+  flex-direction: column;
+  gap:30px
+}
 h4 {
   text-align: center;
   font-family: "Arial", sans-serif;
@@ -8,9 +23,10 @@ h4 {
 }
 .container {
   text-align: center;
-  margin-top: 50px;
+  /* margin-top: 50px; */
   display: flex;
-  flex-direction: row;
+
+  gap:30px;
   justify-content: center;
 }
 
@@ -22,6 +38,9 @@ h4 {
 body {
   background-color: #181717;
   font-family: "Arial", sans-serif;
+}
+button {
+  cursor: pointer;
 }
 .rock-div,
 .paper-div,
@@ -42,30 +61,32 @@ body {
   align-items: center;
   gap: 30px;
   margin: 10px;
-  padding: 60px;
+  /* padding: 60px; */
 }
 .reset-button,
 .auto-play-button {
-  height: 40px;
-  width: 120px;
+  /* height: 40px;
+  width: 120px; */
+  padding: 10px 30px;
   font-weight: bold;
-  border-radius: 6px;
+  border-radius: 3px;
   background-color: rgb(234, 178, 22);
 }
 .confirmation-dialog {
   font-size: 20px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   color: #ebe3e3;
   text-align: center;
 }
 .yes-button,
 .no-button {
   margin-top: 20px;
-  height: 30px;
-  width: 80px;
-  margin-right: 10px;
+  /* height: 30px;
+  width: 80px; */
+  padding: 10px 30px;
+  /* margin-right: 10px; */
   font-weight: bold;
-  border-radius: 6px;
+  border-radius: 3px;
   background-color: rgb(22, 178, 34);
 }
 .scoreContainer {
@@ -73,8 +94,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 20px;
-  padding: 40px;
+  /* margin: 20px; */
+  /* padding: 40px; */
+  gap: 20px;
 }
 .computer-move {
   font-size: 30px;
