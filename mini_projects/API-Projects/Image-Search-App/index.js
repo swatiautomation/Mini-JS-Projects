@@ -26,7 +26,7 @@ form.addEventListener("submit", (e) => {
 // Function to fetch images from Unsplash API
 async function fetchImages(SearchItem, pageNum) {
   try {
-    pageNum === 1 ? (imageContainer.innerHTML = "") : null; // Clear images only on the first page
+    pageNum === 1 && (imageContainer.innerHTML = ""); // Clear images only on the first page
 
     const url = `${baseUrl}${SearchItem}&per_page=30&page=${pageNum}&client_id=BekaH84Ex6BqFGpDpfV1TUvNJoNxwu32YKIifMcp5Ok`;
     const response = await fetch(url);
