@@ -43,12 +43,11 @@ const inputBox = document.querySelector("#inputBox");
 
 function handleSearch(e) {
   let searchText = e.target.value;
-  let filterResult = arr.filter((item) => {
-    return (
+  let filterResult = arr.filter(
+    (item) =>
       item.name.toLowerCase().includes(searchText.toLowerCase()) ||
-      item.email.toLowerCase().includes(searchText.toLowerCase())
-    );
-  });
+      item.email.toLowerCase().includes(searchText.toLowerCase()),
+  );
 
   if (filterResult.length === 0) {
     userContainer.innerHTML = "No result found";
@@ -60,7 +59,7 @@ inputBox.addEventListener("input", handleSearch);
 
 function randerArray(arr) {
   userContainer.innerHTML = "";
-  arr.map((item) => {
+  arr.forEach((item) => {
     const ele = document.createElement("div");
     ele.className = "userContainer";
     ele.innerHTML = `
