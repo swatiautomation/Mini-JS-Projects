@@ -12,57 +12,66 @@ form.addEventListener("submit", (e) => {
 // functions to fetch data for synonyms, antonyms, example and definition
 function synonymsHeader(data) {
   let synonymsHtml = "";
-  for (let k = 0; k < data.length; k++) {
-    for (let i = 0; i < data[k].meanings.length; i++) {
-      const def = data[k].meanings[i];
-      for (let j = 0; j < def.synonyms.length; j++) {
-        synonymsHtml += `<ul><li>${def.synonyms[j]}</li></ul>`;
-      }
-    }
+
+  const synonyms = data
+    .map((item) =>
+      item.meanings.map((d) => d.definitions.map((dg) => dg.synonyms)),
+    )
+    .flat(Infinity);
+
+  if (synonyms.length > 0) {
+    synonymsHtml += synonyms.join(", ");
   }
+
   return synonymsHtml;
 }
 
 function antonymsHeader(data) {
   let antonymsHtml = "";
-  for (let k = 0; k < data.length; k++) {
-    for (let i = 0; i < data[k].meanings.length; i++) {
-      const def = data[k].meanings[i];
-      for (let j = 0; j < def.antonyms.length; j++) {
-        antonymsHtml += `<ul><li>${def.antonyms[j]}</li></ul>`;
-      }
-    }
+
+  const antonyms = data
+    .map((item) => item.meanings.map((d) => d.antonyms))
+    .flat(Infinity);
+
+  if (antonyms.length > 0) {
+    antonymsHtml += antonyms.join(", ");
   }
+
   return antonymsHtml;
 }
 
 function exampleHeader(data) {
   let exampleHtml = "";
-  for (let k = 0; k < data.length; k++) {
-    for (let i = 0; i < data[k].meanings.length; i++) {
-      const def = data[k].meanings[i];
-      for (let j = 0; j < def.definitions.length; j++) {
-        if (def.definitions[j].example) {
-          exampleHtml += `<ul><li>${def.definitions[j].example}</li></ul>`;
-        }
-      }
-    }
+
+  const exampleHeader = data
+    .map((item) =>
+      item.meanings.map((d) =>
+        d.definitions.map((dg) => dg.example).filter(Boolean),
+      ),
+    )
+    .flat(Infinity);
+
+  if (exampleHeader.length > 0) {
+    exampleHtml += exampleHeader.join(",");
   }
+
   return exampleHtml;
 }
 
 function fetchWordDefinition(data) {
   let definationHtml = "";
-  for (let k = 0; k < data.length; k++) {
-    for (let i = 0; i < data[k].meanings.length; i++) {
-      const def = data[k].meanings[i];
-      for (let j = 0; j < def.definitions.length; j++) {
-        if (def.definitions[j].definition) {
-          definationHtml += `<ul class="newList"><li>${def.definitions[j].definition}</li></ul>`;
-        }
-      }
-    }
+
+  const definations = data
+    .map((item) =>
+      item.meanings.map((d) => d.definitions.map((df) => df.definition)),
+    )
+    .flat(Infinity);
+  if (definations.length > 0) {
+    definationHtml += `<ul class="newList">${definations
+      .map((def) => `<li>${def}</li>`)
+      .join("")}</ul>`;
   }
+
   return definationHtml;
 }
 
@@ -73,27 +82,36 @@ async function getWordDefinition(searchQueryWord) {
     result.innerHTML = "Fetching definition...";
     const url = `${baseUrl}/${searchQueryWord}`;
     const response = await fetch(url);
-    //  .then((response) => response.json());
     const data = await response.json();
-    // console.log(data);
-    // console.log(data.length);
+    console.log(data.title);
+    if (!response.ok) {
+      result.innerHTML = ` 
+      <div> 
+      <h2> ${data.title || "No Definations Found"}</h2>
+      <p>${data.messsage || "Please try another word."}</p>
+      </div>
+
+      `;
+      return;
+    }
     const definition = data[0].meanings[0];
+
     html += `
-  <div>
+      <div>
       <h1><strong>Word: </strong> ${data[0].word}</h1>
       <p style="font-style: italic;"><strong>Part of Speech: </strong>${
         definition.partOfSpeech
       }</p>
-      <p><strong>Example: </strong>${exampleHeader(data) || "N/A"}</p>
-       <p> <strong>Antonyms: </strong>${antonymsHeader(data) || "N/A"}</p>
-       <p><strong>Synonyms: </strong>${synonymsHeader(data) || "N/A"}</p>
-       <p><strong>Definition: </strong>${fetchWordDefinition(data)}</p>
-      </div>`;
+        <p><strong>Example: </strong>${exampleHeader(data) || "N/A"}</p>
+        <p> <strong>Antonyms: </strong>${antonymsHeader(data) || "N/A"}</p>
+        <p><strong>Synonyms: </strong>${synonymsHeader(data) || "N/A"}</p>
+        <p><strong>Definition: </strong>${fetchWordDefinition(data)}</p>
+        </div>`;
 
     html += `<a href="${data[0].sourceUrls}" target="_blank">Source</a>`;
     result.innerHTML = html; // Update the result container with the new HTML
   } catch (error) {
-    result.innerHTML = `<div>No Results Found</div>`;
     console.error("Error fetching definition:", error);
+    result.innerHTML = `<div> Something went wrong.Please try again.</div>`;
   }
 }
