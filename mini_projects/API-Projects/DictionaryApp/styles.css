@@ -1,5 +1,5 @@
 :root {
-  --header-color: #4caf50;
+  --header-color: #2e7d32;
   --bcg-color: #f4f4f4;
   --padding: 20px;
 }
@@ -16,7 +16,7 @@ body {
   line-height: 1.6;
   padding: var(--padding);
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   /* overflow: hidden; */
 }
 
@@ -41,6 +41,14 @@ main {
   padding: var(--padding);
   max-width: 800px;
 }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
 form {
   display: flex;
   justify-content: center;
@@ -57,7 +65,7 @@ button[type="submit"] {
   border-radius: 0 4px 4px 0;
 }
 #word-input::placeholder {
-  color: rgb(199, 192, 192);
+  color: #767676;
 }
 
 form button[type="submit"] {
@@ -70,7 +78,14 @@ form button[type="submit"] {
 form button[type="submit"]:hover,
 #result a:hover {
   /* background-color: #45a049; */
-  color: #333;
+  color: #1b5e20;
+}
+
+form button[type="submit"]:focus-visible,
+#result a:focus-visible,
+#word-input:focus-visible {
+  outline: 3px solid #1b5e20;
+  outline-offset: 2px;
 }
 footer {
   text-align: center;

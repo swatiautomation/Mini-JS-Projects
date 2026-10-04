@@ -59,20 +59,20 @@ function exampleHeader(data) {
 }
 
 function fetchWordDefinition(data) {
-  let definationHtml = "";
+  let definitionHtml = "";
 
-  const definations = data
+  const definitions = data
     .map((item) =>
       item.meanings.map((d) => d.definitions.map((df) => df.definition)),
     )
     .flat(Infinity);
-  if (definations.length > 0) {
-    definationHtml += `<ul class="newList">${definations
+  if (definitions.length > 0) {
+    definitionHtml += `<ul class="newList">${definitions
       .map((def) => `<li>${def}</li>`)
       .join("")}</ul>`;
   }
 
-  return definationHtml;
+  return definitionHtml;
 }
 
 // Dictionary API
@@ -87,8 +87,8 @@ async function getWordDefinition(searchQueryWord) {
     if (!response.ok) {
       result.innerHTML = ` 
       <div> 
-      <h2> ${data.title || "No Definations Found"}</h2>
-      <p>${data.messsage || "Please try another word."}</p>
+      <h2> ${data.title || "No Definitions Found"}</h2>
+      <p>${data.message || "Please try another word."}</p>
       </div>
 
       `;
@@ -97,18 +97,18 @@ async function getWordDefinition(searchQueryWord) {
     const definition = data[0].meanings[0];
 
     html += `
-      <div>
-      <h1><strong>Word: </strong> ${data[0].word}</h1>
+    <div>
+      <h2><strong>Word: </strong> ${data[0].word}</h2>
       <p style="font-style: italic;"><strong>Part of Speech: </strong>${
         definition.partOfSpeech
       }</p>
         <p><strong>Example: </strong>${exampleHeader(data) || "N/A"}</p>
         <p> <strong>Antonyms: </strong>${antonymsHeader(data) || "N/A"}</p>
         <p><strong>Synonyms: </strong>${synonymsHeader(data) || "N/A"}</p>
-        <p><strong>Definition: </strong>${fetchWordDefinition(data)}</p>
-        </div>`;
+        <div><strong>Definition: </strong>${fetchWordDefinition(data)}</div>
+    </div>`;
 
-    html += `<a href="${data[0].sourceUrls}" target="_blank">Source</a>`;
+    html += `<a href="${data[0].sourceUrls}" target="_blank" rel="noopener noreferrer">Source <span class='sr-only'>(opens in new tab)</span></a>`;
     result.innerHTML = html; // Update the result container with the new HTML
   } catch (error) {
     console.error("Error fetching definition:", error);
