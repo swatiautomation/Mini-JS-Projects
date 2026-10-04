@@ -7,34 +7,22 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="mainContainer">
-      <h4>Rock Paper Scissors</h4>
+    <main class="mainContainer">
+      <h1>Rock Paper Scissors</h1>
       <div class="container">
-        <div class="rock-div">
-          <img
-            src="./images/rock-emoji.png"
-            alt="rock paper scissors"
-            class="move-icon"
-          />
-        </div>
+        <button class="rock-div move-btn" aria-label="Rock">
+          <img src="./images/rock-emoji.png" alt="" class="move-icon" />
+        </button>
 
-        <div class="paper-div">
-          <img
-            src="./images/paper-emoji.png"
-            alt="rock paper scissors"
-            class="move-icon"
-          />
-        </div>
+        <button class="paper-div move-btn" aria-label="Paper">
+          <img src="./images/paper-emoji.png" alt="" class="move-icon" />
+        </button>
 
-        <div class="scissors-div">
-          <img
-            src="./images/scissors-emoji.png"
-            alt="rock paper scissors"
-            class="move-icon"
-          />
-        </div>
+        <button class="scissors-div move-btn" aria-label="Scissors">
+          <img src="./images/scissors-emoji.png" alt="" class="move-icon" />
+        </button>
       </div>
-      <div class="scoreContainer">
+      <div class="scoreContainer" aria-live="polite" aria-atomic="true">
         <div class="computer-move"></div>
         <div class="result-message result"></div>
         <div class="score"></div>
@@ -42,11 +30,19 @@
 
       <div class="btn">
         <button class="reset-button">Reset Score</button>
-        <button class="auto-play-button">Auto Play</button>
+        <button class="auto-play-button" aria-pressed="false">Auto Play</button>
       </div>
 
-      <div class="confirmation-dialog"></div>
-    </div>
+      <dialog
+        class="confirmation-dialog"
+        role="alertdialog"
+        aria-labelledby="confirm-text"
+      >
+        <p id="confirm-text">Are you sure you want to reset the score?</p>
+        <button class="yes-button">Yes</button>
+        <button class="no-button" autofocus>No</button>
+      </dialog>
+    </main>
 
     <script src="script.js"></script>
   </body>

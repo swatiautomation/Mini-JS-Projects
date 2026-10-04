@@ -8,6 +8,7 @@ const resultMessageDiv = document.querySelector(".result-message");
 const scoreDiv = document.querySelector(".score");
 const autoPlayButton = document.querySelector(".auto-play-button");
 const confirmationDialog = document.querySelector(".confirmation-dialog");
+const scoreContainer = document.querySelector(".scoreContainer");
 
 // Event Listeners
 
@@ -39,7 +40,9 @@ function stopAutoPlay() {
 
   clearInterval(intervalId);
   isAutoPlaying = false;
+  autoPlayButton.setAttribute("aria-pressed", "false");
   autoPlayButton.innerText = "Auto Play";
+  scoreContainer.setAttribute("aria-live", "polite");
 }
 // Reset Score Function
 
@@ -51,29 +54,32 @@ function resetScore() {
   updateScore();
   computerMoveDiv.innerText = "";
   resultMessageDiv.innerText = "";
-  confirmationDialog.innerHTML = "";
   stopAutoPlay();
 }
 
 // Confirmation Dialog
 
+const yesButton = document.querySelector(".yes-button");
+const noButton = document.querySelector(".no-button");
+
+yesButton.addEventListener("click", () => {
+  resetScore();
+  confirmationDialog.close();
+});
+
+noButton.addEventListener("click", () => {
+  confirmationDialog.close();
+});
+
+// Fires for Yes, No and Escape, so focus always returns to Reset
+confirmationDialog.addEventListener("close", () => {
+  resetButton.focus();
+});
+
 function showResetConfirmation() {
-  confirmationDialog.innerHTML = `<div> Are you sure you want to reset the score?</div>
-    <button class="yes-button">Yes</button>
-    <button class="no-button">No</button>`;
-
-  const yesButton = document.querySelector(".yes-button");
-  const noButton = document.querySelector(".no-button");
-  yesButton.addEventListener("click", () => {
-    resetScore();
-  });
-
-  noButton.addEventListener("click", () => {
-    confirmationDialog.innerHTML = "";
-  });
-
-  confirmationDialog.scrollIntoView({ behavior: "smooth", block: "center" });
-  noButton.focus();
+  if (confirmationDialog.open) return;
+  // showModal() traps focus inside the dialog and closes it on Escape
+  confirmationDialog.showModal();
 }
 
 // Update Score Display
@@ -91,7 +97,7 @@ function showResult(message, color) {
 
   if (message === "You win!") {
     score.wins++;
-  } else if (message === "You loose!") {
+  } else if (message === "You lose!") {
     score.losses++;
   } else {
     score.ties++;
@@ -110,28 +116,32 @@ function pickComputerMove() {
 
 function play(playerMove) {
   const computerMove = pickComputerMove();
-  computerMoveDiv.innerHTML = `You
-      <img src="./images/${playerMove}-emoji.png" class="move-icon" />
-      <img src="./images/${computerMove}-emoji.png" class="move-icon" />
-      computer.`;
+  computerMoveDiv.innerHTML = `You picked
+      <img src="./images/${playerMove}-emoji.png" alt="${playerMove}" class="move-icon" />
+      computer picked
+      <img src="./images/${computerMove}-emoji.png" alt="${computerMove}" class="move-icon" />
+      `;
   computerMoveDiv.style.color = "#ebe3e3";
 
   if (playerMove == computerMove) {
     showResult("It's a tie!", "gray");
   } else if (
-    (playerMove == "Rock" && computerMove == "Scissors") ||
-    (playerMove == "Paper" && computerMove == "Rock") ||
-    (playerMove == "Scissors" && computerMove == "Paper")
+    (playerMove == "rock" && computerMove == "scissors") ||
+    (playerMove == "paper" && computerMove == "rock") ||
+    (playerMove == "scissors" && computerMove == "paper")
   ) {
     showResult("You win!", "green");
   } else {
-    showResult("You loose!", "red");
+    showResult("You lose!", "red");
   }
 }
 
 //Keyboard Event Listener
 
 document.body.addEventListener("keydown", (event) => {
+  if (event.ctrlKey || event.altKey || event.metaKey) return;
+  // Don't play the game behind an open dialog
+  if (confirmationDialog.open) return;
   switch (event.key) {
     case "r":
       play("rock");
@@ -155,13 +165,15 @@ document.body.addEventListener("keydown", (event) => {
 
 function autoPlay() {
   if (!isAutoPlaying) {
-    const randomMove = pickComputerMove();
     intervalId = setInterval(() => {
+      const randomMove = pickComputerMove();
       play(randomMove);
     }, 1000);
     isAutoPlaying = true;
     autoPlayButton.innerText = "Stop Playing";
-    confirmationDialog.innerHTML = "";
+    scoreContainer.setAttribute("aria-live", "off");
+    autoPlayButton.setAttribute("aria-pressed", "true");
+    if (confirmationDialog.open) confirmationDialog.close();
   } else {
     stopAutoPlay();
   }

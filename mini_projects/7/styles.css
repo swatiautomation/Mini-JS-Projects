@@ -1,19 +1,18 @@
-*{
-  margin:0;
-  padding:0;
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
-html,body{
+html,
+body {
   height: 100vh;
-  width: 100vw;
 }
-.mainContainer{
-
+.mainContainer {
   display: flex;
   flex-direction: column;
-  gap:30px
+  gap: 30px;
 }
-h4 {
+h1 {
   text-align: center;
   font-family: "Arial", sans-serif;
   color: #ebe3e3;
@@ -25,9 +24,13 @@ h4 {
   text-align: center;
   /* margin-top: 50px; */
   display: flex;
-
-  gap:30px;
+  flex-wrap: wrap;
+  gap: 30px;
   justify-content: center;
+}
+.move-btn {
+  background: none;
+  cursor: pointer;
 }
 
 .move-icon {
@@ -42,6 +45,10 @@ body {
 button {
   cursor: pointer;
 }
+button:focus-visible {
+  outline: 3px solid #eab216;
+  outline-offset: 4px;
+}
 .rock-div,
 .paper-div,
 .scissors-div {
@@ -52,7 +59,6 @@ button {
   display: flex;
   border-radius: 100px;
   border: 3px solid #ffffff;
-  margin-right: 30px;
 }
 
 .btn {
@@ -73,10 +79,20 @@ button {
   background-color: rgb(234, 178, 22);
 }
 .confirmation-dialog {
+  margin: auto;
+  padding: 30px;
   font-size: 20px;
-  /* margin-top: 20px; */
+  background-color: #181717;
   color: #ebe3e3;
+  border: 2px solid #ebe3e3;
+  border-radius: 8px;
   text-align: center;
+}
+.confirmation-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.yes-button {
+  margin-right: 20px;
 }
 .yes-button,
 .no-button {
