@@ -3,24 +3,29 @@ const form = document.querySelector("form");
 const searchBtn = document.querySelector("#search-btn");
 const imageContainer = document.querySelector(".image-container");
 const loadMoreBtn = document.querySelector(".loadMoreBtn");
+const statusMsg = document.querySelector("#status");
 
 const baseUrl = `https://api.unsplash.com/search/photos?query=`;
 let pageNum = 1;
 
-// Event Listeners
-// searchBtn.addEventListener("click", () => {
-//   searchInput.value.trim() !== ""
-//     ? fetchImages(searchInput.value, pageNum)
-//     : (imageContainer.innerHTML = `<h2>Please enter a search term</h2>`);
-// });
+function announce(message) {
+  statusMsg.textContent = message;
+}
 
 // Event listener for Enter key press
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  searchInput.value.trim() !== ""
-    ? fetchImages(searchInput.value, pageNum)
-    : (imageContainer.innerHTML = `<h2>Please enter a search term</h2>`);
+  const term = searchInput.value.trim();
+  if (term === "") {
+    imageContainer.innerHTML = `<h2>Please enter a search term</h2>`;
+    loadMoreBtn.style.display = "none";
+    announce("Please enter a search term");
+    searchInput.focus();
+    return;
+  }
+  pageNum = 1;
+  fetchImages(term, pageNum);
 });
 
 // Function to fetch images from Unsplash API
@@ -28,48 +33,53 @@ async function fetchImages(SearchItem, pageNum) {
   try {
     pageNum === 1 && (imageContainer.innerHTML = ""); // Clear images only on the first page
 
-    const url = `${baseUrl}${SearchItem}&per_page=30&page=${pageNum}&client_id=BekaH84Ex6BqFGpDpfV1TUvNJoNxwu32YKIifMcp5Ok`;
+    const url = `${baseUrl}${encodeURIComponent(SearchItem)}&per_page=30&page=${pageNum}&client_id=BekaH84Ex6BqFGpDpfV1TUvNJoNxwu32YKIifMcp5Ok`;
     const response = await fetch(url);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
 
     if (data.results.length > 0) {
       data.results.forEach((photo) => {
-        const imgElement = document.createElement("div");
-        imgElement.classList.add("imageDiv");
-        imgElement.innerHTML = `<img src="${photo.urls.regular}" />`;
+        const caption = photo.alt_description || "Untitled photo";
 
-        // const tooltip = document.createElement('div');
-        // tooltip.classList.add('tooltip');
-        // tooltip.innerText = `${photo.alt_description}`;
-        // imgElement.appendChild(tooltip);
+        const link = document.createElement("a");
+        link.classList.add("imageDiv");
+        link.href = photo.links.download;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
 
-        // imgElement.addEventListener("dblclick", () => {
-        //   window.open(photo.links.download, "target=_blank");
-        // });
-        imgElement.addEventListener("click", () => {
-          window.open(photo.links.download, "target=_blank");
-        });
+        const img = document.createElement("img");
+        img.src = photo.urls.regular;
+        img.alt = caption;
 
         const overlay = document.createElement("div");
         overlay.classList.add("overlay");
+        overlay.setAttribute("aria-hidden", "true");
 
-        const overLayText = document.createElement("h3");
-        overLayText.innerText = `${photo.alt_description || "Unknown"}`;
-
+        const overLayText = document.createElement("p");
+        overLayText.innerText = caption;
         overlay.appendChild(overLayText);
-        imgElement.appendChild(overlay);
-        imageContainer.appendChild(imgElement);
+
+        const newTab = document.createElement("span");
+        newTab.classList.add("sr-only");
+        newTab.textContent = "(open in new tab)";
+
+        link.append(img, overlay, newTab);
+        imageContainer.appendChild(link);
       });
 
-      data.total_pages === pageNum
-        ? (loadMoreBtn.style.display = "none")
-        : (loadMoreBtn.style.display = "block");
+      loadMoreBtn.style.display =
+        pageNum >= data.total_pages ? "none" : "block";
+      announce(`${data.results.length} images loaded for "${SearchItem}"`);
     } else {
       imageContainer.innerHTML = `<h2>No results found</h2>`;
+      loadMoreBtn.style.display = "none";
+      announce("No results found");
     }
   } catch (err) {
     imageContainer.innerHTML = `<h2>Error in fetching images</h2>`;
-    throw err;
+    loadMoreBtn.style.display = "none";
+    announce("Error in fetching images");
   }
 }
 

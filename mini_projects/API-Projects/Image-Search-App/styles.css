@@ -13,6 +13,9 @@ body {
   padding: 20px;
   width: 100%;
 }
+main {
+  width: 100%;
+}
 header {
   width: 100%;
   text-align: center;
@@ -26,23 +29,43 @@ header {
 .search-container {
   margin-top: 20px;
   position: relative;
-  cursor: pointer;
+}
+.sr-only {
+  overflow: hidden;
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  margin: -1px;
+  padding: 0;
+  border: 0;
 }
 
 .search-container input {
   width: 100%;
   flex: 1;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #767676;
   border-radius: 15px;
   font-size: 16px;
-  outline: none;
+  padding-right: 40px;
 }
-.search-container i {
+
+.search-container button {
   position: absolute;
-  right: 10px;
-  bottom: 12px;
-  color: #888;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  color: #595959;
+}
+.search-container button:focus-visible {
+  outline: 2px solid #005fcc;
+  outline-offset: 2px;
 }
 main section {
   display: flex;
@@ -58,11 +81,14 @@ main section {
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
+  width: 100%;
 }
 
 .image-container img {
-  width: 400px;
-  height: 400px;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
   border-radius: 10px;
   object-fit: cover;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -71,32 +97,34 @@ main section {
 
 .image-container .imageDiv {
   position: relative;
+  display: block;
+  width: min(400px, 100%);
 }
 
 .overlay {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
+  inset: 0;
+  overflow: hidden;
   height: 0;
-  background-color: rgba(9, 9, 9, 0.1);
+  background-color: rgba(0, 0, 0, 0.65);
   transition: height 0.3s ease;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 12px;
+  border-radius: 10px;
 }
-.imageDiv:hover .overlay {
+.imageDiv:hover .overlay,
+.imageDiv:focus-visible .overlay {
   height: 100%;
-  cursor: pointer;
 }
 
-.overlay h3 {
-  color: white;
+.overlay p {
+  color: #fff;
   text-align: center;
-  font-size: 12px;
-  display: none;
+  font-size: 14px;
 }
-.imageDiv:hover .overlay h3 {
+.imageDiv:hover .overlay p {
   display: block;
 }
 .loadMoreBtn {

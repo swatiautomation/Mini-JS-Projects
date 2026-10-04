@@ -9,22 +9,29 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="data:," />
   </head>
   <body>
     <header>
-      <h1 id="header-title"><a href="">Image Search App</a></h1>
+      <h1 id="header-title"><a href="./">Image Search App</a></h1>
       <form action="">
         <div class="search-container">
+          <label for="word-input" class="sr-only">Search Image</label>
           <input
-            type="text"
+            type="search"
+            id="word-input"
             placeholder="Search images"
             class="searchInput"
-          /><i class="fa fa-search" aria-hidden="true" id="search-btn"></i>
+          />
+          <button type="submit" aria-label="Search">
+            <i class="fa fa-search" aria-hidden="true" id="search-btn"></i>
+          </button>
         </div>
       </form>
     </header>
 
     <main>
+      <p id="status" class="sr-only" role="status" aria-live="polite"></p>
       <section>
         <div class="image-container">
           <h2>Search for Images only</h2>
